@@ -9,6 +9,7 @@
 #import "LSPushAppDelegate.h"
 #import "ViewController.h"
 #import "LightspeedCredentials.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation LSPushAppDelegate
 
@@ -50,6 +51,7 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     if (application.applicationState == UIApplicationStateActive)
     {
+        AudioServicesPlaySystemSound(1002);
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Lightspeed"
                                                         message:(NSString*)[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
