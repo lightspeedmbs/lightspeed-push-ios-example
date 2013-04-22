@@ -34,6 +34,9 @@
 #define LIGHTSPEED_API_LOGIN                @"admins/login.json"
 #define LIGHTSPEED_API_SEND_PUSH            @"push_notification/send.json"
 
+#define USERDEFAULTS_USERNAME               @"LSUsername"
+#define USERDEFAULTS_PASSWORD               @"LSPassword"
+
 @interface ViewController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (nonatomic, retain) UIView* loginView;
@@ -120,7 +123,15 @@
                                                          green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
                                                           blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
         
-        self.textEmail.placeholder = @"mymail@mail.com";
+        NSString* defaultUsername = [[NSUserDefaults standardUserDefaults] stringForKey:USERDEFAULTS_USERNAME];
+        if (defaultUsername && ![defaultUsername isEqualToString:@""])
+        {
+            self.textEmail.text = defaultUsername;
+        }
+        else
+        {
+            self.textEmail.placeholder = @"mymail@mail.com";
+        }
         UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME size:LOGINVIEW_TEXTFIELD_FONTSIZE];
         [self.textEmail setFont:fontAvenirNext];
         arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_TEXTCOLOR];;
@@ -143,7 +154,15 @@
                                                              blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
         
         self.textPassword.secureTextEntry = YES;
-        self.textPassword.placeholder = @"password";
+        NSString* defaultPassword = [[NSUserDefaults standardUserDefaults] stringForKey:USERDEFAULTS_PASSWORD];
+        if (defaultPassword && ![defaultPassword isEqualToString:@""])
+        {
+            self.textPassword.text = defaultPassword;
+        }
+        else
+        {
+            self.textPassword.placeholder = @"password";
+        }
         UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME size:LOGINVIEW_TEXTFIELD_FONTSIZE];
         [self.textPassword setFont:fontAvenirNext];
         arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_TEXTCOLOR];;
@@ -277,6 +296,13 @@
     [self.labelAPIResult setHidden:NO];
 }
 
+- (void)updateLoginCredentials:(NSString*)strUsername andPassword:(NSString*)strPassword
+{
+    [[NSUserDefaults standardUserDefaults] setValue:strUsername forKey:USERDEFAULTS_USERNAME];
+    [[NSUserDefaults standardUserDefaults] setValue:strPassword forKey:USERDEFAULTS_PASSWORD];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (void)keyboardShowNotification:(NSNotification*)notification
 {
     NSValue* value = [[notification userInfo] valueForKey:UIKeyboardFrameBeginUserInfoKey];
@@ -341,6 +367,7 @@
 {
     /* Setup channel names to register to your own Lightspeed application */
     NSArray* arrayChannels = [NSArray arrayWithObjects:@"BroadcastMessage", @"LightspeedNews", nil ];
+    [self updateLoginCredentials:self.textEmail.text andPassword:self.textPassword.text];
     
     [[AnPush shared] register:arrayChannels overwrite:YES];
     
