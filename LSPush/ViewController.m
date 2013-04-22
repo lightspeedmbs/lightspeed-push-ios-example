@@ -380,7 +380,7 @@
 {
     NSString* strAlertMessage = [NSString stringWithFormat:@"\"%@\"", @"This is a Lightspeed Push Notification"];
     NSString* strSound = [NSString stringWithFormat:@"\"%@\"", @"default"];
-    NSString* strData = [NSString stringWithFormat:@"payload={ios:{alert:%@,badge:1,sound:%@}}", strAlertMessage, strSound];
+    NSString* strData = [NSString stringWithFormat:@"payload={\"ios\":{\"alert\":%@,\"badge\":1,\"sound\":%@}}", strAlertMessage, strSound];
     NSURL* requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?key=%@", LIGHTSPEED_API_BASEURL, LIGHTSPEED_API_SEND_PUSH, kArrownockAppKey]];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestURL];
     
