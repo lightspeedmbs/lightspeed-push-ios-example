@@ -165,6 +165,22 @@
     [self.loginView addSubview:btnLogin];
     [btnLogin release];
     
+    if (!self.labelAPIResult)
+    {
+        self.labelAPIResult = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)] autorelease];
+        UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME
+                                                 size:LOGINVIEW_TEXTFIELD_FONTSIZE];
+        [self.labelAPIResult setFont:fontAvenirNext];
+        NSArray* arrayRGB = [self hexToRGB:0xFFFFFF];
+        [self.labelAPIResult setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                          green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                           blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0
+                                                          alpha:1.0]];
+        
+        self.labelAPIResult.numberOfLines = 2;
+    }
+    [self.labelAPIResult setHidden:YES];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardShowNotification:)
                                                  name:UIKeyboardWillShowNotification
@@ -217,6 +233,48 @@
     [self.welcomeView addSubview:self.btnPush];
     
     self.welcomeView.alpha = 0;
+}
+
+- (void)displayResult:(BOOL)success withMessage:(NSString*)message
+{
+    if (!self.labelAPIResult)
+    {
+        self.labelAPIResult = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)] autorelease];
+        UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME
+                                                 size:LOGINVIEW_TEXTFIELD_FONTSIZE];
+        [self.labelAPIResult setFont:fontAvenirNext];
+        NSArray* arrayRGB = [self hexToRGB:0xFFFFFF];
+        [self.labelAPIResult setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                          green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                           blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0
+                                                          alpha:1.0]];
+        
+        self.labelAPIResult.numberOfLines = 2;
+    }
+    
+    self.labelAPIResult.text = message;
+    
+    CGRect textSize = [self.labelAPIResult textRectForBounds:CGRectMake(0, 0, 320, 50) limitedToNumberOfLines:2];
+    self.labelAPIResult.frame = textSize;
+    
+    if (!success)
+    {
+        NSArray* arrayRGB = [self hexToRGB:0x00676F];
+        [self.labelAPIResult setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                          green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                           blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0
+                                                          alpha:1.0]];
+    }
+    
+    CGRect frame = self.labelAPIResult.frame;
+    frame.origin.x = (IPHONE_SCREEN_WIDTH - self.labelAPIResult.frame.size.width) / 2;
+    frame.origin.y = (self.view.frame.size.height - 50) + (50 - self.labelAPIResult.frame.size.height)/2;
+    self.labelAPIResult.frame = frame;
+    [self.labelAPIResult setBackgroundColor:[UIColor clearColor]];
+    
+    [self.actIndicator stopAnimating];
+    [self.view addSubview:self.labelAPIResult];
+    [self.labelAPIResult setHidden:NO];
 }
 
 - (void)keyboardShowNotification:(NSNotification*)notification
@@ -354,6 +412,7 @@
     [m_receivedData release];
     
     NSLog(@"Connection error: %@", error);
+    [self displayResult:NO withMessage:[error localizedDescription]];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -369,50 +428,31 @@
     NSDictionary* dictMeta = [dictData objectForKey:@"meta"];
     if (dictMeta)
     {
-        if (!self.labelAPIResult)
-        {
-            self.labelAPIResult = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)] autorelease];
-            UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME
-                                                     size:LOGINVIEW_TEXTFIELD_FONTSIZE];
-            [self.labelAPIResult setFont:fontAvenirNext];
-            NSArray* arrayRGB = [self hexToRGB:0xFFFFFF];
-            [self.labelAPIResult setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
-                                                              green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
-                                                               blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0
-                                                              alpha:1.0]];
-            
-        }
         [self.labelAPIResult setHidden:NO];
         
         if ([[dictMeta objectForKey:@"code"] intValue] == 200)
         {
             if ([(NSString*)[dictMeta objectForKey:@"method_name"] isEqualToString:@"login"])
             {
-                self.labelAPIResult.text = @"Login Successful!!";
+                BOOL success = YES;
+                [self displayResult:success withMessage:@"Login Successful!!"];
                 [self performSelector:@selector(changeViewAfterLoginSuccessfully) withObject:nil afterDelay:0.5f];
             }
             else if ([(NSString*)[dictMeta objectForKey:@"method_name"] isEqualToString:@"SendMessage"])
             {
-                self.labelAPIResult.text = @"Push Sent Successfully!!";
+                BOOL success = YES;
+                [self displayResult:success withMessage:@"Push Sent Successfully!!"];
                 if (!self.btnPush.enabled)
                     self.btnPush.enabled = YES;
             }
         }
         else
         {
-            self.labelAPIResult.text = (NSString*)[dictMeta objectForKey:@"message"];
+            BOOL success = NO;
+            [self displayResult:success withMessage:(NSString*)[dictMeta objectForKey:@"message"]];
             if (!self.btnPush.enabled)
                 self.btnPush.enabled = YES;
         }
-        
-        [self.labelAPIResult sizeToFit];
-        CGRect frame = self.labelAPIResult.frame;
-        frame.origin.x = (IPHONE_SCREEN_WIDTH - self.labelAPIResult.frame.size.width) / 2;
-        frame.origin.y = self.view.frame.size.height - 33;
-        self.labelAPIResult.frame = frame;
-        [self.labelAPIResult setBackgroundColor:[UIColor clearColor]];
-        
-        [self.view addSubview:self.labelAPIResult];
     }
 
 }

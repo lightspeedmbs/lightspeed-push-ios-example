@@ -36,6 +36,12 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     NSLog(@"error: %@", error);
+    if (error)
+    {
+        ViewController* mainViewController = (ViewController*)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        BOOL success = NO;
+        [mainViewController displayResult:success withMessage:[error localizedDescription]];
+    }
 }
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -56,12 +62,29 @@
 {
     NSLog(@"Arrownock didRegistered\nError: %@", error);
     ViewController* mainViewController = (ViewController*)[[[UIApplication sharedApplication] delegate] window].rootViewController;
-    mainViewController.btnPush.enabled = YES;
+    if (![error isEqualToString:@""])
+    {
+        BOOL success = NO;
+        [mainViewController displayResult:success withMessage:error];
+    }
+    else if (!anid || [anid isEqualToString:@""])
+    {
+        [mainViewController displayResult:NO withMessage:@"Invalid Lightspeed ID"];
+    }
+    else
+    {
+        mainViewController.btnPush.enabled = YES;
+    }
 }
 
 - (void)didUnregistered:(BOOL)success withError:(NSString *)error
 {
     NSLog(@"Unregistration success: %@\nError: %@", success? @"YES" : @"NO", error);
+    if (!success)
+    {
+        ViewController* mainViewController = (ViewController*)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        [mainViewController displayResult:success withMessage:error];
+    }
 }
 
 #pragma mark - Application life-cycle management

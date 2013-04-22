@@ -12,4 +12,6 @@
 
 @property (nonatomic, retain) UIButton* btnPush;
 
+- (void)displayResult:(BOOL)success withMessage:(NSString*)message;
+
 @end
