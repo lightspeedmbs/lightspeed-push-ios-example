@@ -18,8 +18,6 @@
 		801DC444171E7FFE00910387 /* push_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC43B171E7FFE00910387 /* push_up.png */; };
 		801DC447171E848C00910387 /* appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC445171E848C00910387 /* appicon.png */; };
 		801DC448171E848C00910387 /* appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC446171E848C00910387 /* appicon@2x.png */; };
-		801DC44A171E849A00910387 /* appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC449171E849A00910387 /* appicon.png */; };
-		801DC44C171E84A500910387 /* appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC44B171E84A500910387 /* appicon@2x.png */; };
 		80AD251C1720DE4600FAFD39 /* libArrownock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AD251B1720DE4600FAFD39 /* libArrownock.a */; };
 		80B24038171E4D2E0095E870 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B24037171E4D2E0095E870 /* UIKit.framework */; };
 		80B2403A171E4D2E0095E870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B24039171E4D2E0095E870 /* Foundation.framework */; };
@@ -50,8 +48,6 @@
 		801DC43B171E7FFE00910387 /* push_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = push_up.png; path = LSPush/images/push_up.png; sourceTree = "<group>"; };
 		801DC445171E848C00910387 /* appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon.png; path = LSPush/images/appicon.png; sourceTree = "<group>"; };
 		801DC446171E848C00910387 /* appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appicon@2x.png"; path = "LSPush/images/appicon@2x.png"; sourceTree = "<group>"; };
-		801DC449171E849A00910387 /* appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon.png; path = ../appicon.png; sourceTree = "<group>"; };
-		801DC44B171E84A500910387 /* appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appicon@2x.png"; path = "../appicon@2x.png"; sourceTree = "<group>"; };
 		80AD251A1720DE4600FAFD39 /* AnPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnPush.h; sourceTree = "<group>"; };
 		80AD251B1720DE4600FAFD39 /* libArrownock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libArrownock.a; sourceTree = "<group>"; };
 		80B24034171E4D2E0095E870 /* LSPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,8 +171,6 @@
 				80B2404F171E4D2E0095E870 /* MainStoryboard.storyboard */,
 				80B24052171E4D2E0095E870 /* ViewController.h */,
 				80B24053171E4D2E0095E870 /* ViewController.m */,
-				801DC449171E849A00910387 /* appicon.png */,
-				801DC44B171E84A500910387 /* appicon@2x.png */,
 				80B2403E171E4D2E0095E870 /* Supporting Files */,
 			);
 			path = LSPush;
@@ -263,8 +257,6 @@
 				801DC444171E7FFE00910387 /* push_up.png in Resources */,
 				801DC447171E848C00910387 /* appicon.png in Resources */,
 				801DC448171E848C00910387 /* appicon@2x.png in Resources */,
-				801DC44A171E849A00910387 /* appicon.png in Resources */,
-				801DC44C171E84A500910387 /* appicon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
