@@ -459,13 +459,13 @@
         
         if ([[dictMeta objectForKey:@"code"] intValue] == 200)
         {
-            if ([(NSString*)[dictMeta objectForKey:@"method_name"] isEqualToString:@"login"])
+            if ([(NSString*)[dictMeta objectForKey:@"method"] isEqualToString:@"loginAdmin"])
             {
                 BOOL success = YES;
                 [self displayResult:success withMessage:@"Login Successful!!"];
                 [self performSelector:@selector(changeViewAfterLoginSuccessfully) withObject:nil afterDelay:0.5f];
             }
-            else if ([(NSString*)[dictMeta objectForKey:@"method_name"] isEqualToString:@"SendMessage"])
+            else if ([(NSString*)[dictMeta objectForKey:@"method"] isEqualToString:@"SendMessage"])
             {
                 BOOL success = YES;
                 [self displayResult:success withMessage:@"Push Sent Successfully!!"];
