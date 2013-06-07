@@ -34,4 +34,6 @@
 - (void)setSilentWithHour:(NSInteger)startHour minute:(NSInteger)startMinute duration:(NSInteger)duration resend:(BOOL)resend;
 - (void)clearSilent;
 - (NSString *)getAnID;
+- (void)setId:(NSString *)id;
+- (void)setHost:(NSString *)host;
 @end
