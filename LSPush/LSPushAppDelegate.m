@@ -21,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [AnPush registerForPushNotification:(UIRemoteNotificationTypeAlert|
                                          UIRemoteNotificationTypeBadge|
                                          UIRemoteNotificationTypeSound)];
