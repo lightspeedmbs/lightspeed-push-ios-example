@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C08F48817B29B4E00748CB5 /* libAnMessage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C08F48717B29B4E00748CB5 /* libAnMessage.a */; };
 		801DC43C171E7FFE00910387 /* bg_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC433171E7FFE00910387 /* bg_640x1136.png */; };
 		801DC43D171E7FFE00910387 /* bg_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC434171E7FFE00910387 /* bg_640x960.png */; };
 		801DC43E171E7FFE00910387 /* bu_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC435171E7FFE00910387 /* bu_email.png */; };
@@ -31,10 +32,12 @@
 		80B24054171E4D2E0095E870 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B24053171E4D2E0095E870 /* ViewController.m */; };
 		80B24061171E4EDA0095E870 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B24060171E4EDA0095E870 /* Security.framework */; };
 		80B670F01724E8BA00C6D57C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B670EF1724E8BA00C6D57C /* AudioToolbox.framework */; };
-		80E2B0DB176197DD00744CFE /* libAnMessage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E2B0DA176197DD00744CFE /* libAnMessage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C08F48517B29B4E00748CB5 /* AnIM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnIM.h; sourceTree = "<group>"; };
+		2C08F48617B29B4E00748CB5 /* AnPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnPush.h; sourceTree = "<group>"; };
+		2C08F48717B29B4E00748CB5 /* libAnMessage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAnMessage.a; sourceTree = "<group>"; };
 		2C5C0748171EFFA300C3B50D /* LightspeedCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightspeedCredentials.h; sourceTree = "<group>"; };
 		801DC430171E797600910387 /* LSPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LSPush.entitlements; sourceTree = "<group>"; };
 		801DC433171E7FFE00910387 /* bg_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_640x1136.png; path = LSPush/images/bg_640x1136.png; sourceTree = "<group>"; };
@@ -48,7 +51,6 @@
 		801DC43B171E7FFE00910387 /* push_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = push_up.png; path = LSPush/images/push_up.png; sourceTree = "<group>"; };
 		801DC445171E848C00910387 /* appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon.png; path = LSPush/images/appicon.png; sourceTree = "<group>"; };
 		801DC446171E848C00910387 /* appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appicon@2x.png"; path = "LSPush/images/appicon@2x.png"; sourceTree = "<group>"; };
-		80AD251A1720DE4600FAFD39 /* AnPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnPush.h; sourceTree = "<group>"; };
 		80B24034171E4D2E0095E870 /* LSPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80B24037171E4D2E0095E870 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		80B24039171E4D2E0095E870 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,8 +69,6 @@
 		80B24053171E4D2E0095E870 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		80B24060171E4EDA0095E870 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		80B670EF1724E8BA00C6D57C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		80E2B0D717617F9000744CFE /* AnIM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnIM.h; sourceTree = "<group>"; };
-		80E2B0DA176197DD00744CFE /* libAnMessage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAnMessage.a; path = LightspeedSDK2.0/libAnMessage.a; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +81,30 @@
 				80B24038171E4D2E0095E870 /* UIKit.framework in Frameworks */,
 				80B2403A171E4D2E0095E870 /* Foundation.framework in Frameworks */,
 				80B2403C171E4D2E0095E870 /* CoreGraphics.framework in Frameworks */,
-				80E2B0DB176197DD00744CFE /* libAnMessage.a in Frameworks */,
+				2C08F48817B29B4E00748CB5 /* libAnMessage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C08F48317B29B4E00748CB5 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				2C08F48417B29B4E00748CB5 /* AnMessage */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		2C08F48417B29B4E00748CB5 /* AnMessage */ = {
+			isa = PBXGroup;
+			children = (
+				2C08F48517B29B4E00748CB5 /* AnIM.h */,
+				2C08F48617B29B4E00748CB5 /* AnPush.h */,
+			);
+			path = AnMessage;
+			sourceTree = "<group>";
+		};
 		801DC431171E7FEA00910387 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,27 +126,10 @@
 		80AD25171720DE4600FAFD39 /* LightspeedSDK2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				80AD25181720DE4600FAFD39 /* include */,
+				2C08F48317B29B4E00748CB5 /* include */,
+				2C08F48717B29B4E00748CB5 /* libAnMessage.a */,
 			);
 			path = LightspeedSDK2.0;
-			sourceTree = "<group>";
-		};
-		80AD25181720DE4600FAFD39 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				80E2B0DA176197DD00744CFE /* libAnMessage.a */,
-				80AD25191720DE4600FAFD39 /* Arrownock */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		80AD25191720DE4600FAFD39 /* Arrownock */ = {
-			isa = PBXGroup;
-			children = (
-				80AD251A1720DE4600FAFD39 /* AnPush.h */,
-				80E2B0D717617F9000744CFE /* AnIM.h */,
-			);
-			path = Arrownock;
 			sourceTree = "<group>";
 		};
 		80B2402B171E4D2E0095E870 = {
