@@ -168,6 +168,7 @@
     {
         self.sendImagePushView = [[LSPushSendImagePushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
         [self.view addSubview:self.sendImagePushView];
+        self.sendImagePushView.parentSenderVC = self;
         [self.sendImagePushView setHidden:YES];
     }
     

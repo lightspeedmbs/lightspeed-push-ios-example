@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LSPushSenderViewController;
 
 @interface LSPushSendImagePushView : UIView
+
+@property (strong) LSPushSenderViewController* parentSenderVC;
 
 @end
