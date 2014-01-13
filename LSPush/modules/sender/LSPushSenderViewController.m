@@ -161,24 +161,28 @@
     {
         self.sendLinkPushView = [[LSPushSendLinkPushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
         [self.view addSubview:self.sendLinkPushView];
+        [self.sendLinkPushView setHidden:YES];
     }
     
     if (!self.sendImagePushView)
     {
         self.sendImagePushView = [[LSPushSendImagePushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
         [self.view addSubview:self.sendImagePushView];
+        [self.sendImagePushView setHidden:YES];
     }
     
     if (!self.sendInnerLinkPushView)
     {
         self.sendInnerLinkPushView = [[LSPushSendInnerLinkPushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
         [self.view addSubview:self.sendInnerLinkPushView];
+        [self.sendInnerLinkPushView setHidden:YES];
     }
     
     if (!self.sendVideoPushView)
     {
         self.sendVideoPushView = [[LSPushSendVideoPushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
         [self.view addSubview:self.sendVideoPushView];
+        [self.sendVideoPushView setHidden:YES];
     }
     
     [self.view bringSubviewToFront:self.sendTextPushView];
@@ -192,6 +196,8 @@
 
 - (void)showPushFunctionView:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"co.herxun.LSPush.dismissKeyboard" object:nil];
+    
     UIButton* tabButton = (UIButton*)sender;
     NSInteger nBtnIndex = tabButton.tag;
 
@@ -200,16 +206,27 @@
         [button setSelected:[button isEqual:tabButton]];
     }
     
+    [self.sendTextPushView setHidden:YES];
+    [self.sendLinkPushView setHidden:YES];
+    [self.sendImagePushView setHidden:YES];
+    [self.sendInnerLinkPushView setHidden:YES];
+    [self.sendVideoPushView setHidden:YES];
+    
     switch (nBtnIndex) {
         case 0:
+            [self.sendTextPushView setHidden:NO];
             break;
         case 1:
+            [self.sendLinkPushView setHidden:NO];
             break;
         case 2:
+            [self.sendImagePushView setHidden:NO];
             break;
         case 3:
+            [self.sendInnerLinkPushView setHidden:NO];
             break;
         case 4:
+            [self.sendVideoPushView setHidden:NO];
             break;
             
         default:
