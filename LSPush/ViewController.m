@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "AnPush.h"
 #import "LightspeedCredentials.h"
+#import "LSPushGenericNaviController.h"
+#import "LSPushSenderViewController.h"
 
 #define IPHONE_SCREEN_WIDTH                 320.0f
 #define IPHONE_SCREEN_HEIGHT                480.0f
@@ -39,12 +41,14 @@
 
 @interface ViewController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
-@property (nonatomic, strong) UIView* loginView;
-@property (nonatomic, strong) IBOutlet UITextField* textEmail;
-@property (nonatomic, strong) IBOutlet UITextField* textPassword;
-@property (nonatomic, strong) UILabel* labelAPIResult;
-@property (nonatomic, strong) UIActivityIndicatorView* actIndicator;
-@property (nonatomic, strong) UIView* welcomeView;
+@property (strong) UIView* loginView;
+@property (strong) IBOutlet UITextField* textEmail;
+@property (strong) IBOutlet UITextField* textPassword;
+@property (strong) UILabel* labelAPIResult;
+@property (strong) UIActivityIndicatorView* actIndicator;
+@property (strong) UIView* welcomeView;
+
+@property (strong) LSPushGenericNaviController* senderNavController;
 
 @end
 
@@ -320,6 +324,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - button functions
 - (IBAction)loginLightspeed:(id)sender
 {
     NSLog(@"loginLightspeed");
@@ -343,6 +348,7 @@
         [self textFieldShouldReturn:self.textEmail];
     
     [self.actIndicator startAnimating];
+    
     [self loginLightspeedWithEmail:self.textEmail.text andPassword:self.textPassword.text];
 }
 
@@ -471,7 +477,18 @@
             {
                 BOOL success = YES;
                 [self displayResult:success withMessage:@"Login Successful!!"];
-                [self performSelector:@selector(changeViewAfterLoginSuccessfully) withObject:nil afterDelay:0.5f];
+//                [self performSelector:@selector(changeViewAfterLoginSuccessfully) withObject:nil afterDelay:0.5f];
+                
+                double delayInSeconds = 1.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    if (!self.senderNavController)
+                    {
+                        LSPushSenderViewController* senderVC = [[LSPushSenderViewController alloc] init];
+                        self.senderNavController = [[LSPushGenericNaviController alloc] initWithRootViewController:senderVC];
+                        [self presentViewController:self.senderNavController animated:YES completion:nil];
+                    }
+                });
             }
             else if ([(NSString*)[dictMeta objectForKey:@"method"] isEqualToString:@"SendMessage"])
             {
