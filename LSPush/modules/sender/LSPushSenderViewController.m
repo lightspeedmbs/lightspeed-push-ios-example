@@ -193,6 +193,8 @@
 - (void)logoutClicked
 {
     NSLog(@"logout sender");
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showPushFunctionView:(id)sender
