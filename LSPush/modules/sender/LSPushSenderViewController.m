@@ -9,16 +9,21 @@
 #import "LSPushSenderViewController.h"
 #import "HXNavItemButton.h"
 #import "UICommonUtility.h"
+#import "LSPushSendTextPushView.h"
+#import "LSPushSendLinkPushView.h"
+#import "LSPushSendImagePushView.h"
+#import "LSPushSendInnerLinkPushView.h"
+#import "LSPushSendVideoPushView.h"
 
 @interface LSPushSenderViewController ()
 
 /* UI elements */
 @property (strong) HXNavItemButton* btnLogout;
-@property (strong) UIView* sendTextPushView;
-@property (strong) UIView* sendLinkPushView;
-@property (strong) UIView* sendImagePushView;
-@property (strong) UIView* sendInnerLinkPushView;
-@property (strong) UIView* sendVideoPushView;
+@property (strong) LSPushSendTextPushView* sendTextPushView;
+@property (strong) LSPushSendLinkPushView* sendLinkPushView;
+@property (strong) LSPushSendImagePushView* sendImagePushView;
+@property (strong) LSPushSendInnerLinkPushView* sendInnerLinkPushView;
+@property (strong) LSPushSendVideoPushView* sendVideoPushView;
 
 /* controls */
 @property (strong) NSMutableArray* arrayTabButtons;
@@ -97,6 +102,7 @@
     [btnSendTextPush setTag:0];
     [btnSendTextPush addTarget:self action:@selector(showPushFunctionView:) forControlEvents:UIControlEventTouchUpInside];
     [self.arrayTabButtons addObject:btnSendTextPush];
+    [btnSendTextPush setSelected:YES];
     
     UIButton* btnSendLinkPush = [[UIButton alloc] initWithFrame:CGRectMake(fBtnSideMargin+(fBtnSize+fBtnGap), fBtnSideMargin, fBtnSize, fBtnSize)];
     [self.view addSubview:btnSendLinkPush];
@@ -133,6 +139,49 @@
     [btnSendVideoPush setTag:4];
     [btnSendVideoPush addTarget:self action:@selector(showPushFunctionView:) forControlEvents:UIControlEventTouchUpInside];
     [self.arrayTabButtons addObject:btnSendVideoPush];
+    
+
+    [self preparePushViews];
+}
+
+- (void)preparePushViews
+{
+    CGSize screenSize = [UICommonUtility getScreenSize];
+    CGFloat fStatusNavBarAndTabbarHeight = 26.0f + 45.0f;
+    CGFloat fPushViewHeight = screenSize.height - 64.0f - fStatusNavBarAndTabbarHeight;
+    CGFloat fPushViewTop = fStatusNavBarAndTabbarHeight;
+    
+    if (!self.sendTextPushView)
+    {
+        self.sendTextPushView = [[LSPushSendTextPushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
+        [self.view addSubview:self.sendTextPushView];
+    }
+    
+    if (!self.sendLinkPushView)
+    {
+        self.sendLinkPushView = [[LSPushSendLinkPushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
+        [self.view addSubview:self.sendLinkPushView];
+    }
+    
+    if (!self.sendImagePushView)
+    {
+        self.sendImagePushView = [[LSPushSendImagePushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
+        [self.view addSubview:self.sendImagePushView];
+    }
+    
+    if (!self.sendInnerLinkPushView)
+    {
+        self.sendInnerLinkPushView = [[LSPushSendInnerLinkPushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
+        [self.view addSubview:self.sendInnerLinkPushView];
+    }
+    
+    if (!self.sendVideoPushView)
+    {
+        self.sendVideoPushView = [[LSPushSendVideoPushView alloc] initWithFrame:CGRectMake(0.0f, fPushViewTop, screenSize.width, fPushViewHeight)];
+        [self.view addSubview:self.sendVideoPushView];
+    }
+    
+    [self.view bringSubviewToFront:self.sendTextPushView];
 }
 
 #pragma mark - button functions
