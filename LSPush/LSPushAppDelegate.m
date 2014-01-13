@@ -17,28 +17,68 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    return YES;
+}
+
+- (void)registerForRemoteNotifications
+{
     [AnPush registerForPushNotification:(UIRemoteNotificationTypeAlert|
                                          UIRemoteNotificationTypeBadge|
                                          UIRemoteNotificationTypeSound)];
+}
+
+- (void)unregisterRemoteNotifications
+{
+    AnPush* anPush;
+    @try {
+        anPush = [AnPush shared];
+    }
+    @catch (NSException *exception) {
+        anPush = nil;
+    }
+    @finally {
+        
+    }
     
-    return YES;
+    if (anPush)
+    {
+        
+    }
 }
 
 #pragma mark - Lightspeed push-notification registration result handler
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [AnPush setup:kArrownockAppKey deviceToken:deviceToken delegate:self secure:YES];
+    
+    /* register channels */
+    NSArray* arrayChannels = [NSArray arrayWithObjects:@"BroadcastMessage", @"LightspeedNews", nil ];
+    
+    AnPush* anPush;
+    @try {
+        anPush = [AnPush shared];
+    }
+    @catch (NSException *exception) {
+        anPush = nil;
+    }
+    @finally {
+        
+    }
+    
+    if (anPush)
+    {
+        [anPush register:arrayChannels overwrite:YES];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"co.herxun.LSPush.registerRemoteNotificationResult" object:@"Lightspeed Push might not have been properly set up"];
+    }
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"error: %@", error);
-    if (error)
-    {
-        ViewController* mainViewController = (ViewController*)[[[UIApplication sharedApplication] delegate] window].rootViewController;
-        BOOL success = NO;
-        [mainViewController displayResult:success withMessage:[error localizedDescription]];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"co.herxun.LSPush.registerRemoteNotificationResult" object:[error localizedDescription]];
 }
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -59,30 +99,24 @@
 - (void)didRegistered:(NSString *)anid withError:(NSString *)error
 {
     NSLog(@"Arrownock didRegistered\nError: %@", error);
-    ViewController* mainViewController = (ViewController*)[[[UIApplication sharedApplication] delegate] window].rootViewController;
-    if (![error isEqualToString:@""])
+    if (error && ![error isEqualToString:@""])
     {
-        BOOL success = NO;
-        [mainViewController displayResult:success withMessage:error];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"co.herxun.LSPush.registerRemoteNotificationResult" object:error];
     }
     else if (!anid || [anid isEqualToString:@""])
     {
-        [mainViewController displayResult:NO withMessage:@"Invalid Lightspeed ID"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"co.herxun.LSPush.registerRemoteNotificationResult" object:@"Invalid Lightspeed ID"];
     }
     else
     {
-        mainViewController.btnPush.enabled = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"co.herxun.LSPush.registerRemoteNotificationResult" object:nil];
     }
 }
 
 - (void)didUnregistered:(BOOL)success withError:(NSString *)error
 {
     NSLog(@"Unregistration success: %@\nError: %@", success? @"YES" : @"NO", error);
-    if (!success)
-    {
-        ViewController* mainViewController = (ViewController*)[[[UIApplication sharedApplication] delegate] window].rootViewController;
-        [mainViewController displayResult:success withMessage:error];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"co.herxun.LSPush.unregisterRemoteNotificationResult" object:(success)? nil : error];
 }
 
 #pragma mark - Application life-cycle management

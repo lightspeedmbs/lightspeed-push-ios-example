@@ -13,6 +13,8 @@
 #import "LSPushSenderViewController.h"
 #import "UICommonUtility.h"
 #import "LightspeedAPIManager.h"
+#import "LSPushAppDelegate.h"
+#import "LSPushReceiverViewController.h"
 
 #define IPHONE_SCREEN_WIDTH                 320.0f
 #define IPHONE_SCREEN_HEIGHT                480.0f
@@ -49,6 +51,7 @@
 @property (strong) UIView* welcomeView;
 
 @property (strong) LSPushGenericNaviController* senderNavController;
+@property (strong) LSPushGenericNaviController* receiverNavController;
 
 @end
 
@@ -170,10 +173,54 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)handleRemoteNotificationRegistrationResult:(NSNotification*)notification
+{
+    [self.actIndicator stopAnimating];
+    
+    NSString* strRegisterResultError = (NSString*)(notification.object);
+    if (strRegisterResultError && ![strRegisterResultError isEqualToString:@""])
+    {
+        /* failed */
+        [self displayResult:NO withMessage:strRegisterResultError];
+    }
+    else
+    {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.actIndicator stopAnimating];
+            
+            if (!self.receiverNavController)
+            {
+                LSPushReceiverViewController* receiverVC = [[LSPushReceiverViewController alloc] init];
+                self.receiverNavController = [[LSPushGenericNaviController alloc] initWithRootViewController:receiverVC];
+            }
+            [self presentViewController:self.receiverNavController animated:YES completion:nil];
+//        });
+    }
+}
+
 #pragma mark - button functions
 - (void)loginReceiver
 {
+    [self.labelAPIResult setHidden:YES];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteNotificationRegistrationResult:)
+                                                 name:@"co.herxun.LSPush.registerRemoteNotificationResult" object:nil];
     
+    if (!self.actIndicator)
+    {
+        self.actIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        self.actIndicator.hidesWhenStopped = YES;
+        CGRect frame = self.actIndicator.frame;
+        frame.origin.x = (IPHONE_SCREEN_WIDTH - frame.size.width)/2;
+        frame.origin.y = self.view.frame.size.height - 35.0f;
+        self.actIndicator.frame = frame;
+        [self.view addSubview:self.actIndicator];
+    }
+    
+    [self.actIndicator startAnimating];
+    
+    LSPushAppDelegate* delegate = (LSPushAppDelegate*)([[UIApplication sharedApplication] delegate]);
+    [delegate registerForRemoteNotifications];
 }
 
 - (void)loginSender
