@@ -53,8 +53,7 @@
 {
     CGSize screenSize = [UICommonUtility getScreenSize];
     CGFloat fTextviewLeftMargin = 13.0f;
-    CGFloat fTextviewWidth = screenSize.width - 2*fTextviewLeftMargin;
-    CGFloat fTextviewHeight = (screenSize.height > 480.0f)? 150.0f : 80.0f;
+    CGFloat fTextviewWidth = screenSize.width - 2*fTextviewLeftMargin, fTextviewHeight = 150.0f;
     CGFloat fBtnPushWidth = screenSize.width - 2*fTextviewLeftMargin, fBtnPushHeight = 44.0f;
     CGFloat fBtnPushTop = fTextviewHeight + 10.0f;
     
