@@ -76,7 +76,7 @@
         UIView* btnDummyView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.btnLogout.frame.size.width, self.btnLogout.frame.size.height)];
         [btnDummyView addSubview:self.btnLogout];
         BOOL biOS7 = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f);
-        btnDummyView.bounds = CGRectOffset(btnDummyView.bounds, (biOS7)? -16.0f : 5.0f, 0.0f);
+        btnDummyView.bounds = CGRectOffset(btnDummyView.bounds, (biOS7)? -7.0f : 5.0f, 0.0f);
         
         UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnDummyView];
         self.navigationItem.rightBarButtonItem = barButtonItem;

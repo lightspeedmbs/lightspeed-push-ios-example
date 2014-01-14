@@ -14,9 +14,6 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>appicon-120</string>
-				<string>appicon-114</string>
-				<string>appicon-57</string>
 				<string>appicon.png</string>
 				<string>appicon@2x.png</string>
 			</array>
