@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController
 
-@property (nonatomic, strong) UIButton* btnPush;
+@property (nonatomic, retain) UIButton* btnPush;
 
 - (void)displayResult:(BOOL)success withMessage:(NSString*)message;
 

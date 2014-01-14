@@ -39,12 +39,12 @@
 
 @interface ViewController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
-@property (nonatomic, strong) UIView* loginView;
-@property (nonatomic, strong) IBOutlet UITextField* textEmail;
-@property (nonatomic, strong) IBOutlet UITextField* textPassword;
-@property (nonatomic, strong) UILabel* labelAPIResult;
-@property (nonatomic, strong) UIActivityIndicatorView* actIndicator;
-@property (nonatomic, strong) UIView* welcomeView;
+@property (nonatomic, retain) UIView* loginView;
+@property (nonatomic, retain) IBOutlet UITextField* textEmail;
+@property (nonatomic, retain) IBOutlet UITextField* textPassword;
+@property (nonatomic, retain) UILabel* labelAPIResult;
+@property (nonatomic, retain) UIActivityIndicatorView* actIndicator;
+@property (nonatomic, retain) UIView* welcomeView;
 
 @end
 
@@ -64,6 +64,7 @@
     UIImageView* bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, screenHeight)];
     bgView.image = [UIImage imageNamed:(screenHeight == IPHONE5_SCREEN_HEIGHT)? @"bg_640x1136.png" : @"bg_640x960.png"];
     [self.view addSubview:bgView];
+    [bgView release];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
@@ -77,9 +78,9 @@
     if (!self.loginView)
     {
         CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
-        self.loginView = [[UIView alloc] initWithFrame:CGRectMake(LOGINVIEW_X_OFFSET,
+        self.loginView = [[[UIView alloc] initWithFrame:CGRectMake(LOGINVIEW_X_OFFSET,
                                                                   (screenHeight == IPHONE5_SCREEN_HEIGHT)? LOGINVIEW_Y_OFFSET_4IN : LOGINVIEW_Y_OFFSET,
-                                                                  LOGINVIEW_WIDTH, LOGINVIEW_HEIGHT)];
+                                                                  LOGINVIEW_WIDTH, LOGINVIEW_HEIGHT)] autorelease];
         self.loginView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:self.loginView];
     }
@@ -91,6 +92,7 @@
                                                      green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
                                                       blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
     [self.loginView addSubview:dummyViewEmail];
+    [dummyViewEmail release];
     
     UIView* dummyViewPassword = [[UIView alloc] initWithFrame:CGRectMake(LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP,
                                                                          LOGINVIEW_WIDTH-LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT)];
@@ -99,15 +101,18 @@
                                                         green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
                                                          blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
     [self.loginView addSubview:dummyViewPassword];
+    [dummyViewPassword release];
     
     UIImageView* iconEmail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT)];
     iconEmail.image = [UIImage imageNamed:@"bu_email.png"];
     [self.loginView addSubview:iconEmail];
+    [iconEmail release];
     
     UIImageView* iconPassword = [[UIImageView alloc] initWithFrame:CGRectMake(0, LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP,
                                                                               LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT)];
     iconPassword.image = [UIImage imageNamed:@"bu_password.png"];
     [self.loginView addSubview:iconPassword];
+    [iconPassword release];
     
     if (!self.textEmail)
     {
@@ -177,10 +182,11 @@
     [btnLogin setBackgroundImage:[UIImage imageNamed:@"login_down.png"] forState:UIControlStateHighlighted];
     [btnLogin addTarget:self action:@selector(loginLightspeed:) forControlEvents:UIControlEventTouchUpInside];
     [self.loginView addSubview:btnLogin];
+    [btnLogin release];
     
     if (!self.labelAPIResult)
     {
-        self.labelAPIResult = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
+        self.labelAPIResult = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)] autorelease];
         UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME
                                                  size:LOGINVIEW_TEXTFIELD_FONTSIZE];
         [self.labelAPIResult setFont:fontAvenirNext];
@@ -205,9 +211,9 @@
     if (!self.welcomeView)
     {
         CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
-        self.welcomeView = [[UIView alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH,
+        self.welcomeView = [[[UIView alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH,
                                                                     (screenHeight == IPHONE5_SCREEN_HEIGHT)? LOGINVIEW_Y_OFFSET_4IN : LOGINVIEW_Y_OFFSET,
-                                                                    LOGINVIEW_WIDTH, LOGINVIEW_HEIGHT)];
+                                                                    LOGINVIEW_WIDTH, LOGINVIEW_HEIGHT)] autorelease];
         self.welcomeView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:self.welcomeView];
     }
@@ -232,10 +238,11 @@
     labelWelcome.frame = frame;
     
     [self.welcomeView addSubview:labelWelcome];
+    [labelWelcome release];
     
-    self.btnPush = [[UIButton alloc] initWithFrame:CGRectMake((self.welcomeView.frame.size.width - LOGINVIEW_BUTTON_WIDTH)/2,
+    self.btnPush = [[[UIButton alloc] initWithFrame:CGRectMake((self.welcomeView.frame.size.width - LOGINVIEW_BUTTON_WIDTH)/2,
                                                                    2*(LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP),
-                                                                   LOGINVIEW_BUTTON_WIDTH, LOGINVIEW_BUTTON_HEIGHT)];
+                                                                   LOGINVIEW_BUTTON_WIDTH, LOGINVIEW_BUTTON_HEIGHT)] autorelease];
     
     [self.btnPush setBackgroundImage:[UIImage imageNamed:@"push_up.png"] forState:UIControlStateNormal];
     [self.btnPush setBackgroundImage:[UIImage imageNamed:@"push_down.png"] forState:UIControlStateHighlighted];
@@ -251,7 +258,7 @@
 {
     if (!self.labelAPIResult)
     {
-        self.labelAPIResult = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
+        self.labelAPIResult = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)] autorelease];
         UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME
                                                  size:LOGINVIEW_TEXTFIELD_FONTSIZE];
         [self.labelAPIResult setFont:fontAvenirNext];
@@ -328,7 +335,7 @@
     
     if (!self.actIndicator)
     {
-        self.actIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.actIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
         self.actIndicator.hidesWhenStopped = YES;
         CGRect frame = self.actIndicator.frame;
         frame.origin.x = (IPHONE_SCREEN_WIDTH - frame.size.width)/2;
@@ -362,46 +369,28 @@
     NSArray* arrayChannels = [NSArray arrayWithObjects:@"BroadcastMessage", @"LightspeedNews", nil ];
     [self updateLoginCredentials:self.textEmail.text andPassword:self.textPassword.text];
     
-    AnPush* anPush;
-    @try {
-        anPush = [AnPush shared];
-    }
-    @catch (NSException *exception) {
-        anPush = nil;
-    }
-    @finally {
-        
-    }
+    [[AnPush shared] register:arrayChannels overwrite:YES];
     
-    if (anPush)
-    {
-        [anPush register:arrayChannels overwrite:YES];
-        
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        [UIView animateWithDuration:0.5f
-                         animations:^{
-                             CGRect frame = self.loginView.frame;
-                             CGRect frame2 = self.welcomeView.frame;
-                             frame2.origin.x = frame.origin.x;
-                             frame.origin.x = -500;
-                             self.loginView.frame = frame;
-                             self.welcomeView.frame = frame2;
-                             self.welcomeView.alpha = 1.0f;
-                             
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-    }
-    else
-    {
-        [self displayResult:NO withMessage:@"Lightspeed Push might not have been properly set up"];
-    }
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView animateWithDuration:0.5f
+                     animations:^{
+                         CGRect frame = self.loginView.frame;
+                         CGRect frame2 = self.welcomeView.frame;
+                         frame2.origin.x = frame.origin.x;
+                         frame.origin.x = -500;
+                         self.loginView.frame = frame;
+                         self.welcomeView.frame = frame2;
+                         self.welcomeView.alpha = 1.0f;
+                         
+                     } completion:^(BOOL finished) {
+                         
+                     }];
 }
 
 #pragma mark - Lightspeed API functions
 - (void)loginLightspeedWithEmail:(NSString*)strEmail andPassword:(NSString*)strPassword
 {
-    m_receivedData = [NSMutableData data];
+    m_receivedData = [[NSMutableData data] retain];
     
     NSString* strData = [NSString stringWithFormat:@"email=%@&password=%@", strEmail, strPassword];
     NSURL* requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", LIGHTSPEED_API_BASEURL, LIGHTSPEED_API_LOGIN]];
@@ -446,6 +435,8 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    [connection release];
+    [m_receivedData release];
     
     NSLog(@"Connection error: %@", error);
     [self displayResult:NO withMessage:[error localizedDescription]];
@@ -454,6 +445,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"connection finishes loading");
+    [connection release];
     [self.actIndicator stopAnimating];
 
     NSDictionary* dictData = [NSJSONSerialization JSONObjectWithData:m_receivedData
@@ -530,7 +522,7 @@
     NSNumber* blue = [NSNumber numberWithInt:(hexValue & 0xFF)];
     NSArray* arrayRGB = [[NSArray alloc] initWithObjects:red, green, blue, nil];
     
-    return arrayRGB;
+    return [arrayRGB autorelease];
 }
 
 @end
