@@ -24,7 +24,6 @@
 		68F4C927188423EC00C52B51 /* login_bu_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C921188423EC00C52B51 /* login_bu_up.png */; };
 		68F4C92A18842BF400C52B51 /* LightspeedAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F4C92918842BF400C52B51 /* LightspeedAPIManager.m */; };
 		68F4C92D18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F4C92C18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m */; };
-		68F4C933188442B500C52B51 /* LSPushReceiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F4C932188442B500C52B51 /* LSPushReceiverViewController.m */; };
 		801DC43C171E7FFE00910387 /* bg_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC433171E7FFE00910387 /* bg_640x1136.png */; };
 		801DC43D171E7FFE00910387 /* bg_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC434171E7FFE00910387 /* bg_640x960.png */; };
 		801DC43E171E7FFE00910387 /* bu_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC435171E7FFE00910387 /* bu_email.png */; };
@@ -116,8 +115,6 @@
 		68F4C92918842BF400C52B51 /* LightspeedAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightspeedAPIManager.m; sourceTree = "<group>"; };
 		68F4C92B18843CEC00C52B51 /* LSTalkLoadingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSTalkLoadingIndicatorView.h; path = LSPush/modules/common/LSTalkLoadingIndicatorView.h; sourceTree = "<group>"; };
 		68F4C92C18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSTalkLoadingIndicatorView.m; path = LSPush/modules/common/LSTalkLoadingIndicatorView.m; sourceTree = "<group>"; };
-		68F4C931188442B500C52B51 /* LSPushReceiverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSPushReceiverViewController.h; path = LSPush/modules/receiver/LSPushReceiverViewController.h; sourceTree = "<group>"; };
-		68F4C932188442B500C52B51 /* LSPushReceiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSPushReceiverViewController.m; path = LSPush/modules/receiver/LSPushReceiverViewController.m; sourceTree = "<group>"; };
 		801DC430171E797600910387 /* LSPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LSPush.entitlements; sourceTree = "<group>"; };
 		801DC433171E7FFE00910387 /* bg_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_640x1136.png; path = LSPush/images/bg_640x1136.png; sourceTree = "<group>"; };
 		801DC434171E7FFE00910387 /* bg_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_640x960.png; path = LSPush/images/bg_640x960.png; sourceTree = "<group>"; };
@@ -331,8 +328,6 @@
 		8032BF7C18839C3000D81F89 /* receiver */ = {
 			isa = PBXGroup;
 			children = (
-				68F4C931188442B500C52B51 /* LSPushReceiverViewController.h */,
-				68F4C932188442B500C52B51 /* LSPushReceiverViewController.m */,
 			);
 			name = receiver;
 			sourceTree = "<group>";
@@ -588,7 +583,6 @@
 				80B24054171E4D2E0095E870 /* ViewController.m in Sources */,
 				8032BF7F18839D4700D81F89 /* LSPushSenderViewController.m in Sources */,
 				8032BFC61883A6A100D81F89 /* LSPushSendLinkPushView.m in Sources */,
-				68F4C933188442B500C52B51 /* LSPushReceiverViewController.m in Sources */,
 				8032BF7918839A7E00D81F89 /* PlaceholderTextView.m in Sources */,
 				8032BFCC1883A6E000D81F89 /* LSPushSendInnerLinkPushView.m in Sources */,
 				8032BFC31883A68C00D81F89 /* LSPushSendTextPushView.m in Sources */,
