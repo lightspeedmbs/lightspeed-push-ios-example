@@ -11,8 +11,6 @@
 #import "LightspeedCredentials.h"
 #import "LSPushGenericNaviController.h"
 #import "LSPushSenderViewController.h"
-#import "UICommonUtility.h"
-#import "LightspeedAPIManager.h"
 
 #define IPHONE_SCREEN_WIDTH                 320.0f
 #define IPHONE_SCREEN_HEIGHT                480.0f
@@ -44,6 +42,8 @@
 @interface ViewController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (strong) UIView* loginView;
+@property (strong) IBOutlet UITextField* textEmail;
+@property (strong) IBOutlet UITextField* textPassword;
 @property (strong) UILabel* labelAPIResult;
 @property (strong) UIActivityIndicatorView* actIndicator;
 @property (strong) UIView* welcomeView;
@@ -66,85 +66,221 @@
     CGFloat screenHeight = screenBound.size.height;
     
     UIImageView* bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, screenHeight)];
-    bgView.image = [UIImage imageNamed:(screenHeight == IPHONE5_SCREEN_HEIGHT)? @"640x1136.png" : @"640x960.png"];
+    bgView.image = [UIImage imageNamed:(screenHeight == IPHONE5_SCREEN_HEIGHT)? @"bg_640x1136.png" : @"bg_640x960.png"];
     [self.view addSubview:bgView];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     [self prepareLoginView];
+    
+    [self performSelectorInBackground:@selector(prepareWelcomeView) withObject:nil];
 }
 
 - (void)prepareLoginView
 {
-    CGSize screenSize = [UICommonUtility getScreenSize];
+    if (!self.loginView)
+    {
+        CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+        self.loginView = [[UIView alloc] initWithFrame:CGRectMake(LOGINVIEW_X_OFFSET,
+                                                                  (screenHeight == IPHONE5_SCREEN_HEIGHT)? LOGINVIEW_Y_OFFSET_4IN : LOGINVIEW_Y_OFFSET,
+                                                                  LOGINVIEW_WIDTH, LOGINVIEW_HEIGHT)];
+        self.loginView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:self.loginView];
+    }
     
-    BOOL biOS7 = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0);
-    CGFloat fBtnTop = (biOS7)? 373.0f : 302.0f;
-    CGFloat fBtnWidth = 270.0f, fBtnHeight = 45.0f;
+    UIView* dummyViewEmail = [[UIView alloc] initWithFrame:CGRectMake(LOGINVIEW_ICON_WIDTH, 0,
+                                                                      LOGINVIEW_WIDTH-LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT)];
+    NSArray* arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_BGCOLOR];
+    dummyViewEmail.backgroundColor = [UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                     green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                      blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
+    [self.loginView addSubview:dummyViewEmail];
+    
+    UIView* dummyViewPassword = [[UIView alloc] initWithFrame:CGRectMake(LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP,
+                                                                         LOGINVIEW_WIDTH-LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT)];
+    arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_BGCOLOR];
+    dummyViewPassword.backgroundColor = [UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                        green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                         blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
+    [self.loginView addSubview:dummyViewPassword];
+    
+    UIImageView* iconEmail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT)];
+    iconEmail.image = [UIImage imageNamed:@"bu_email.png"];
+    [self.loginView addSubview:iconEmail];
+    
+    UIImageView* iconPassword = [[UIImageView alloc] initWithFrame:CGRectMake(0, LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP,
+                                                                              LOGINVIEW_ICON_WIDTH, LOGINVIEW_TEXTFIELD_HEIGHT)];
+    iconPassword.image = [UIImage imageNamed:@"bu_password.png"];
+    [self.loginView addSubview:iconPassword];
+    
+    if (!self.textEmail)
+    {
+        self.textEmail = [[UITextField alloc] initWithFrame:CGRectMake(LOGINVIEW_ICON_WIDTH+LOGINVIEW_ITEM_GAP, 0,
+                                                                       LOGINVIEW_WIDTH-LOGINVIEW_ICON_WIDTH-LOGINVIEW_ITEM_GAP, LOGINVIEW_TEXTFIELD_HEIGHT)];
+        NSArray* arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_BGCOLOR];
+        self.textEmail.backgroundColor = [UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                         green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                          blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
+        
+        NSString* defaultUsername = [[NSUserDefaults standardUserDefaults] stringForKey:USERDEFAULTS_USERNAME];
+        if (defaultUsername && ![defaultUsername isEqualToString:@""])
+        {
+            self.textEmail.text = defaultUsername;
+        }
+        else
+        {
+            self.textEmail.placeholder = @"mymail@mail.com";
+        }
+        UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME size:LOGINVIEW_TEXTFIELD_FONTSIZE];
+        [self.textEmail setFont:fontAvenirNext];
+        arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_TEXTCOLOR];;
+        [self.textEmail setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                     green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                      blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0]];
 
-    /* receiver login button */
-    UIButton* btnLoginReceiver = [[UIButton alloc] initWithFrame:CGRectMake((screenSize.width - fBtnWidth)/2, fBtnTop, fBtnWidth, fBtnHeight)];
-    [self.view addSubview:btnLoginReceiver];
-    [btnLoginReceiver setImage:[UIImage imageNamed:@"login_bu_up.png"] forState:UIControlStateNormal];
-    [btnLoginReceiver setImage:[UIImage imageNamed:@"login_bu_down.png"] forState:UIControlStateHighlighted];
-    [btnLoginReceiver addTarget:self action:@selector(loginReceiver) forControlEvents:UIControlEventTouchUpInside];
-
-    UILabel* labelBtnReceiver = [[UILabel alloc] initWithFrame:CGRectZero];
-    [btnLoginReceiver addSubview:labelBtnReceiver];
-    [labelBtnReceiver setBackgroundColor:[UIColor clearColor]];
-    [labelBtnReceiver setFont:[UIFont fontWithName:@"STHeitiTC-Light" size:14.0f]];
-    [labelBtnReceiver setTextColor:[UIColor whiteColor]];
-    [labelBtnReceiver setNumberOfLines:0];
-    [labelBtnReceiver setTextAlignment:NSTextAlignmentCenter];
-    [labelBtnReceiver setText:@"Receiver"];
-    [labelBtnReceiver sizeToFit];
+        self.textEmail.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.textEmail.delegate = self;
+        [self.loginView addSubview:self.textEmail];
+    }
     
-    CGRect frame = labelBtnReceiver.frame;
-    frame.origin.x = (fBtnWidth - frame.size.width)/2;
-    frame.origin.y = (fBtnHeight - frame.size.height)/2;
-    labelBtnReceiver.frame = frame;
+    if (!self.textPassword)
+    {
+        self.textPassword = [[UITextField alloc] initWithFrame:CGRectMake(LOGINVIEW_ICON_WIDTH+LOGINVIEW_ITEM_GAP, LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP,
+                                                                          LOGINVIEW_WIDTH-LOGINVIEW_ICON_WIDTH-LOGINVIEW_ITEM_GAP, LOGINVIEW_TEXTFIELD_HEIGHT)];
+        NSArray* arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_BGCOLOR];
+        self.textPassword.backgroundColor = [UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                            green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                             blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0];
+        
+        self.textPassword.secureTextEntry = YES;
+        NSString* defaultPassword = [[NSUserDefaults standardUserDefaults] stringForKey:USERDEFAULTS_PASSWORD];
+        if (defaultPassword && ![defaultPassword isEqualToString:@""])
+        {
+            self.textPassword.text = defaultPassword;
+        }
+        else
+        {
+            self.textPassword.placeholder = @"password";
+        }
+        UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME size:LOGINVIEW_TEXTFIELD_FONTSIZE];
+        [self.textPassword setFont:fontAvenirNext];
+        arrayRGB = [self hexToRGB:LOGINVIEW_TEXTFIELD_TEXTCOLOR];;
+        [self.textPassword setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                        green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                         blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0]];
+        
+        self.textPassword.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.textPassword.delegate = self;
+        [self.loginView addSubview:self.textPassword];
+    }
     
-    
-    /* sender login button */
-    UIButton* btnLoginSender = [[UIButton alloc] initWithFrame:CGRectMake((screenSize.width - fBtnWidth)/2, fBtnTop + 10.0f + fBtnHeight, fBtnWidth, fBtnHeight)];
-    [self.view addSubview:btnLoginSender];
-    [btnLoginSender setImage:[UIImage imageNamed:@"login_bu_up.png"] forState:UIControlStateNormal];
-    [btnLoginSender setImage:[UIImage imageNamed:@"login_bu_down.png"] forState:UIControlStateHighlighted];
-    [btnLoginSender addTarget:self action:@selector(loginSender) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel* labelBtnSender = [[UILabel alloc] initWithFrame:CGRectZero];
-    [btnLoginSender addSubview:labelBtnSender];
-    [labelBtnSender setBackgroundColor:[UIColor clearColor]];
-    [labelBtnSender setFont:[UIFont fontWithName:@"STHeitiTC-Light" size:14.0f]];
-    [labelBtnSender setTextColor:[UIColor whiteColor]];
-    [labelBtnSender setNumberOfLines:0];
-    [labelBtnSender setTextAlignment:NSTextAlignmentCenter];
-    [labelBtnSender setText:@"Sender"];
-    [labelBtnSender sizeToFit];
-    
-    frame = labelBtnSender.frame;
-    frame.origin.x = (fBtnWidth - frame.size.width)/2;
-    frame.origin.y = (fBtnHeight - frame.size.height)/2;
-    labelBtnSender.frame = frame;
-    
+    UIButton* btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(LOGINVIEW_WIDTH-LOGINVIEW_BUTTON_WIDTH,
+                                                                    2*(LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP),
+                                                                    LOGINVIEW_BUTTON_WIDTH, LOGINVIEW_BUTTON_HEIGHT)];
+    [btnLogin setBackgroundImage:[UIImage imageNamed:@"login_up.png"] forState:UIControlStateNormal];
+    [btnLogin setBackgroundImage:[UIImage imageNamed:@"login_down.png"] forState:UIControlStateHighlighted];
+    [btnLogin addTarget:self action:@selector(loginLightspeed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginView addSubview:btnLogin];
     
     if (!self.labelAPIResult)
     {
         self.labelAPIResult = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
-        [self.labelAPIResult setFont:[UIFont fontWithName:@"STHeitiTC-Light" size:13.0f]];
-        [self.labelAPIResult setTextColor:[UIColor whiteColor]];
+        UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME
+                                                 size:LOGINVIEW_TEXTFIELD_FONTSIZE];
+        [self.labelAPIResult setFont:fontAvenirNext];
+        NSArray* arrayRGB = [self hexToRGB:0xFFFFFF];
+        [self.labelAPIResult setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                          green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                           blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0
+                                                          alpha:1.0]];
         
         self.labelAPIResult.numberOfLines = 2;
     }
     [self.labelAPIResult setHidden:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardShowNotification:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+}
+
+- (void)prepareWelcomeView
+{
+    if (!self.welcomeView)
+    {
+        CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+        self.welcomeView = [[UIView alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH,
+                                                                    (screenHeight == IPHONE5_SCREEN_HEIGHT)? LOGINVIEW_Y_OFFSET_4IN : LOGINVIEW_Y_OFFSET,
+                                                                    LOGINVIEW_WIDTH, LOGINVIEW_HEIGHT)];
+        self.welcomeView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:self.welcomeView];
+    }
+    
+    UILabel* labelWelcome = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelWelcome.numberOfLines = 0;
+    labelWelcome.text = [NSString stringWithFormat:@"Welcome to\nLightspeed Demo"];
+    [labelWelcome setTextAlignment:NSTextAlignmentCenter];
+    [labelWelcome setBackgroundColor:[UIColor clearColor]];
+    
+    UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME size:18.0f];
+    [labelWelcome setFont:fontAvenirNext];
+    NSArray* arrayRGB = [self hexToRGB:0x46AAB9];;
+    [labelWelcome setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                               green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0 alpha:1.0]];
+    
+    [labelWelcome sizeToFit];
+    CGRect frame = labelWelcome.frame;
+    frame.origin.x = (self.welcomeView.frame.size.width - frame.size.width)/2;
+    frame.origin.y = (self.welcomeView.frame.size.height - LOGINVIEW_BUTTON_HEIGHT - LOGINVIEW_ITEM_GAP - frame.size.height)/2;
+    labelWelcome.frame = frame;
+    
+    [self.welcomeView addSubview:labelWelcome];
+    
+    self.btnPush = [[UIButton alloc] initWithFrame:CGRectMake((self.welcomeView.frame.size.width - LOGINVIEW_BUTTON_WIDTH)/2,
+                                                                   2*(LOGINVIEW_TEXTFIELD_HEIGHT+LOGINVIEW_ITEM_GAP),
+                                                                   LOGINVIEW_BUTTON_WIDTH, LOGINVIEW_BUTTON_HEIGHT)];
+    
+    [self.btnPush setBackgroundImage:[UIImage imageNamed:@"push_up.png"] forState:UIControlStateNormal];
+    [self.btnPush setBackgroundImage:[UIImage imageNamed:@"push_down.png"] forState:UIControlStateHighlighted];
+    [self.btnPush setBackgroundImage:[UIImage imageNamed:@"push_gray.png"] forState:UIControlStateDisabled];
+    [self.btnPush addTarget:self action:@selector(sendPushNotification:) forControlEvents:UIControlEventTouchUpInside];
+    self.btnPush.enabled = NO;
+    [self.welcomeView addSubview:self.btnPush];
+    
+    self.welcomeView.alpha = 0;
 }
 
 - (void)displayResult:(BOOL)success withMessage:(NSString*)message
 {
+    if (!self.labelAPIResult)
+    {
+        self.labelAPIResult = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
+        UIFont* fontAvenirNext = [UIFont fontWithName:LOGINVIEW_TEXTFIELD_FONTNAME
+                                                 size:LOGINVIEW_TEXTFIELD_FONTSIZE];
+        [self.labelAPIResult setFont:fontAvenirNext];
+        NSArray* arrayRGB = [self hexToRGB:0xFFFFFF];
+        [self.labelAPIResult setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                          green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                           blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0
+                                                          alpha:1.0]];
+        
+        self.labelAPIResult.numberOfLines = 2;
+    }
+    
     self.labelAPIResult.text = message;
     
     CGRect textSize = [self.labelAPIResult textRectForBounds:CGRectMake(0, 0, 320, 50) limitedToNumberOfLines:2];
     self.labelAPIResult.frame = textSize;
+    
+    if (!success)
+    {
+        NSArray* arrayRGB = [self hexToRGB:0x00676F];
+        [self.labelAPIResult setTextColor:[UIColor colorWithRed:[(NSNumber*)(arrayRGB[0]) floatValue]/255.0
+                                                          green:[(NSNumber*)(arrayRGB[1]) floatValue]/255.0
+                                                           blue:[(NSNumber*)(arrayRGB[2]) floatValue]/255.0
+                                                          alpha:1.0]];
+    }
     
     CGRect frame = self.labelAPIResult.frame;
     frame.origin.x = (IPHONE_SCREEN_WIDTH - self.labelAPIResult.frame.size.width) / 2;
@@ -164,6 +300,24 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)keyboardShowNotification:(NSNotification*)notification
+{
+    NSValue* value = [[notification userInfo] valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGFloat keyboardHeight = [value CGRectValue].size.height;
+    
+    CGFloat fToShift = self.view.frame.size.height -
+                        (self.loginView.frame.origin.y + self.loginView.frame.size.height + LOGINVIEW_ITEM_GAP);
+    fToShift = keyboardHeight - fToShift;
+    
+    [UIView animateWithDuration:0.3f
+                     animations:^
+     {
+         CGRect frame = self.view.frame;
+         frame.origin.y -= fToShift;
+         self.view.frame = frame;
+     }];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -171,61 +325,31 @@
 }
 
 #pragma mark - button functions
-- (void)loginReceiver
-{
-    
-}
-
-- (void)loginSender
-{
-    [self.labelAPIResult setHidden:YES];
-    
-    if (!self.actIndicator)
-    {
-        self.actIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        self.actIndicator.hidesWhenStopped = YES;
-        CGRect frame = self.actIndicator.frame;
-        frame.origin.x = (IPHONE_SCREEN_WIDTH - frame.size.width)/2;
-        frame.origin.y = self.view.frame.size.height - 35.0f;
-        self.actIndicator.frame = frame;
-        [self.view addSubview:self.actIndicator];
-    }
-    
-    [self.actIndicator startAnimating];
-    
-    LightspeedAPIManager* lightspeedAPIManager = [LightspeedAPIManager sharedLightspeedAPIManager];
-    if (lightspeedAPIManager)
-    {
-        NSString* strData = [NSString stringWithFormat:@"email=%@&password=%@", kstrLightspeedUsername, kstrLightspeedPassword];
-        [lightspeedAPIManager sendHTTPRequest:@"admins/login.json" payload:strData completion:^(BOOL bSuccess, NSDictionary* dictMeta, NSError* error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.actIndicator stopAnimating];
-                
-                if (!self.senderNavController)
-                {
-                    LSPushSenderViewController* senderVC = [[LSPushSenderViewController alloc] init];
-                    self.senderNavController = [[LSPushGenericNaviController alloc] initWithRootViewController:senderVC];
-                }
-                [self presentViewController:self.senderNavController animated:YES completion:nil];
-            });
-        }];
-    }
-}
-
 - (IBAction)loginLightspeed:(id)sender
 {
+    NSLog(@"loginLightspeed");
+    if (self.labelAPIResult && !self.labelAPIResult.isHidden)
+        [self.labelAPIResult setHidden:YES];
+    
     if (!self.actIndicator)
     {
         self.actIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         self.actIndicator.hidesWhenStopped = YES;
         CGRect frame = self.actIndicator.frame;
         frame.origin.x = (IPHONE_SCREEN_WIDTH - frame.size.width)/2;
-        frame.origin.y = self.view.frame.size.height - frame.size.height;
+        frame.origin.y = self.view.frame.size.height - 33;
         self.actIndicator.frame = frame;
         [self.view addSubview:self.actIndicator];
     }
     
-//    [self loginLightspeedWithEmail:self.textEmail.text andPassword:self.textPassword.text];
+    if (self.textPassword.isFirstResponder)
+        [self textFieldShouldReturn:self.textPassword];
+    else
+        [self textFieldShouldReturn:self.textEmail];
+    
+    [self.actIndicator startAnimating];
+    
+    [self loginLightspeedWithEmail:self.textEmail.text andPassword:self.textPassword.text];
 }
 
 - (IBAction)sendPushNotification:(id)sender
@@ -242,7 +366,7 @@
 {
     /* Setup channel names to register to your own Lightspeed application */
     NSArray* arrayChannels = [NSArray arrayWithObjects:@"BroadcastMessage", @"LightspeedNews", nil ];
-//    [self updateLoginCredentials:self.textEmail.text andPassword:self.textPassword.text];
+    [self updateLoginCredentials:self.textEmail.text andPassword:self.textPassword.text];
     
     AnPush* anPush;
     @try {
@@ -383,6 +507,47 @@
         }
     }
 
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    textField.placeholder = nil;
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.3f
+                     animations:^
+     {
+         CGRect frame = self.view.frame;
+         frame.origin.y = 0;
+         self.view.frame = frame;
+     }];
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.textEmail && [textField.text isEqualToString:@""])
+        textField.placeholder = @"mymail@mail.com";
+    else if (textField == self.textPassword && !textField.text)
+        textField.placeholder = @"password";
+}
+
+#pragma mark - utility functions
+- (NSArray*)hexToRGB:(NSUInteger)hexValue
+{
+    NSNumber* red = [NSNumber numberWithInt:(hexValue>>16)];
+    NSNumber* green = [NSNumber numberWithInt:((hexValue >> 8) & 0xFF)];
+    NSNumber* blue = [NSNumber numberWithInt:(hexValue & 0xFF)];
+    NSArray* arrayRGB = [[NSArray alloc] initWithObjects:red, green, blue, nil];
+    
+    return arrayRGB;
 }
 
 @end

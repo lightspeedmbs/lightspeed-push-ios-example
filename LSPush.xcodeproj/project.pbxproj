@@ -16,14 +16,6 @@
 		68F4C91818841C0D00C52B51 /* appicon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C91518841C0D00C52B51 /* appicon-57.png */; };
 		68F4C91918841C0D00C52B51 /* appicon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C91618841C0D00C52B51 /* appicon-114.png */; };
 		68F4C91A18841C0D00C52B51 /* appicon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C91718841C0D00C52B51 /* appicon-120.png */; };
-		68F4C922188423EC00C52B51 /* 640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C91C188423EC00C52B51 /* 640x1136.png */; };
-		68F4C923188423EC00C52B51 /* 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C91D188423EC00C52B51 /* 640x960.png */; };
-		68F4C924188423EC00C52B51 /* loading_indicator_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C91E188423EC00C52B51 /* loading_indicator_bg.png */; };
-		68F4C925188423EC00C52B51 /* loading_indicator_done.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C91F188423EC00C52B51 /* loading_indicator_done.png */; };
-		68F4C926188423EC00C52B51 /* login_bu_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C920188423EC00C52B51 /* login_bu_down.png */; };
-		68F4C927188423EC00C52B51 /* login_bu_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F4C921188423EC00C52B51 /* login_bu_up.png */; };
-		68F4C92A18842BF400C52B51 /* LightspeedAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F4C92918842BF400C52B51 /* LightspeedAPIManager.m */; };
-		68F4C92D18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F4C92C18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m */; };
 		801DC43C171E7FFE00910387 /* bg_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC433171E7FFE00910387 /* bg_640x1136.png */; };
 		801DC43D171E7FFE00910387 /* bg_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC434171E7FFE00910387 /* bg_640x960.png */; };
 		801DC43E171E7FFE00910387 /* bu_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC435171E7FFE00910387 /* bu_email.png */; };
@@ -105,16 +97,6 @@
 		68F4C91518841C0D00C52B51 /* appicon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-57.png"; sourceTree = "<group>"; };
 		68F4C91618841C0D00C52B51 /* appicon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-114.png"; sourceTree = "<group>"; };
 		68F4C91718841C0D00C52B51 /* appicon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-120.png"; sourceTree = "<group>"; };
-		68F4C91C188423EC00C52B51 /* 640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 640x1136.png; sourceTree = "<group>"; };
-		68F4C91D188423EC00C52B51 /* 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 640x960.png; sourceTree = "<group>"; };
-		68F4C91E188423EC00C52B51 /* loading_indicator_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_indicator_bg.png; sourceTree = "<group>"; };
-		68F4C91F188423EC00C52B51 /* loading_indicator_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_indicator_done.png; sourceTree = "<group>"; };
-		68F4C920188423EC00C52B51 /* login_bu_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bu_down.png; sourceTree = "<group>"; };
-		68F4C921188423EC00C52B51 /* login_bu_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bu_up.png; sourceTree = "<group>"; };
-		68F4C92818842BF400C52B51 /* LightspeedAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightspeedAPIManager.h; sourceTree = "<group>"; };
-		68F4C92918842BF400C52B51 /* LightspeedAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightspeedAPIManager.m; sourceTree = "<group>"; };
-		68F4C92B18843CEC00C52B51 /* LSTalkLoadingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSTalkLoadingIndicatorView.h; path = LSPush/modules/common/LSTalkLoadingIndicatorView.h; sourceTree = "<group>"; };
-		68F4C92C18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSTalkLoadingIndicatorView.m; path = LSPush/modules/common/LSTalkLoadingIndicatorView.m; sourceTree = "<group>"; };
 		801DC430171E797600910387 /* LSPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LSPush.entitlements; sourceTree = "<group>"; };
 		801DC433171E7FFE00910387 /* bg_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_640x1136.png; path = LSPush/images/bg_640x1136.png; sourceTree = "<group>"; };
 		801DC434171E7FFE00910387 /* bg_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_640x960.png; path = LSPush/images/bg_640x960.png; sourceTree = "<group>"; };
@@ -246,24 +228,9 @@
 			path = LSPush/images/navicon;
 			sourceTree = "<group>";
 		};
-		68F4C91B188423EC00C52B51 /* login */ = {
-			isa = PBXGroup;
-			children = (
-				68F4C91C188423EC00C52B51 /* 640x1136.png */,
-				68F4C91D188423EC00C52B51 /* 640x960.png */,
-				68F4C91E188423EC00C52B51 /* loading_indicator_bg.png */,
-				68F4C91F188423EC00C52B51 /* loading_indicator_done.png */,
-				68F4C920188423EC00C52B51 /* login_bu_down.png */,
-				68F4C921188423EC00C52B51 /* login_bu_up.png */,
-			);
-			name = login;
-			path = LSPush/images/login;
-			sourceTree = "<group>";
-		};
 		801DC431171E7FEA00910387 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				68F4C91B188423EC00C52B51 /* login */,
 				68F4C90C18841A5600C52B51 /* navicon */,
 				8032BF801883A63300D81F89 /* sender */,
 				801DC445171E848C00910387 /* appicon.png */,
@@ -298,8 +265,6 @@
 				8032BF7318839A7E00D81F89 /* HXNavItemButton.m */,
 				8032BF7418839A7E00D81F89 /* PlaceholderTextView.h */,
 				8032BF7518839A7E00D81F89 /* PlaceholderTextView.m */,
-				68F4C92B18843CEC00C52B51 /* LSTalkLoadingIndicatorView.h */,
-				68F4C92C18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m */,
 				8032BF7618839A7E00D81F89 /* UICommonUtility.h */,
 				8032BF7718839A7E00D81F89 /* UICommonUtility.m */,
 			);
@@ -428,8 +393,6 @@
 				80B24053171E4D2E0095E870 /* ViewController.m */,
 				8032BF6D188399CF00D81F89 /* LSPushGenericNaviController.h */,
 				8032BF6E188399CF00D81F89 /* LSPushGenericNaviController.m */,
-				68F4C92818842BF400C52B51 /* LightspeedAPIManager.h */,
-				68F4C92918842BF400C52B51 /* LightspeedAPIManager.m */,
 				80B2403E171E4D2E0095E870 /* Supporting Files */,
 			);
 			path = LSPush;
@@ -512,15 +475,12 @@
 				8032BFAF1883A63B00D81F89 /* push_bu04_disable.png in Resources */,
 				68F4C91118841A5600C52B51 /* navbaricon_back.png in Resources */,
 				8032BFB61883A63B00D81F89 /* push_bu05.png in Resources */,
-				68F4C922188423EC00C52B51 /* 640x1136.png in Resources */,
 				8032BFAD1883A63B00D81F89 /* push_bu03_up.png in Resources */,
-				68F4C926188423EC00C52B51 /* login_bu_down.png in Resources */,
 				8032BFA61883A63B00D81F89 /* push_bu01.png in Resources */,
 				8032BFA31883A63B00D81F89 /* push_bu01_disable.png in Resources */,
 				8032BFB81883A63B00D81F89 /* tabicon_image_up.png in Resources */,
 				80B2404E171E4D2E0095E870 /* Default-568h@2x.png in Resources */,
 				8032BFBC1883A63B00D81F89 /* tabicon_link_up.png in Resources */,
-				68F4C924188423EC00C52B51 /* loading_indicator_bg.png in Resources */,
 				8032BFB91883A63B00D81F89 /* tabicon_innerlink_select.png in Resources */,
 				8032BFB71883A63B00D81F89 /* tabicon_image_select.png in Resources */,
 				8032BFB31883A63B00D81F89 /* push_bu05_disable.png in Resources */,
@@ -528,15 +488,12 @@
 				68F4C91A18841C0D00C52B51 /* appicon-120.png in Resources */,
 				801DC43C171E7FFE00910387 /* bg_640x1136.png in Resources */,
 				68F4C91218841A5600C52B51 /* navbaricon_close.png in Resources */,
-				68F4C925188423EC00C52B51 /* loading_indicator_done.png in Resources */,
 				801DC43D171E7FFE00910387 /* bg_640x960.png in Resources */,
 				801DC43E171E7FFE00910387 /* bu_email.png in Resources */,
 				8032BFB21883A63B00D81F89 /* push_bu04.png in Resources */,
 				8032BFB11883A63B00D81F89 /* push_bu04_up.png in Resources */,
 				801DC43F171E7FFE00910387 /* bu_password.png in Resources */,
-				68F4C927188423EC00C52B51 /* login_bu_up.png in Resources */,
 				801DC440171E7FFE00910387 /* login_down.png in Resources */,
-				68F4C923188423EC00C52B51 /* 640x960.png in Resources */,
 				8032BFA41883A63B00D81F89 /* push_bu01_down.png in Resources */,
 				8032BFBD1883A63B00D81F89 /* tabicon_message_select.png in Resources */,
 				8032BFA11883A63B00D81F89 /* delete_down.png in Resources */,
@@ -575,11 +532,9 @@
 				80B24044171E4D2E0095E870 /* main.m in Sources */,
 				8032BFC91883A6C800D81F89 /* LSPushSendImagePushView.m in Sources */,
 				8032BF7A18839A7E00D81F89 /* UICommonUtility.m in Sources */,
-				68F4C92D18843CEC00C52B51 /* LSTalkLoadingIndicatorView.m in Sources */,
 				8032BF7818839A7E00D81F89 /* HXNavItemButton.m in Sources */,
 				80B24048171E4D2E0095E870 /* LSPushAppDelegate.m in Sources */,
 				8032BF6F188399CF00D81F89 /* LSPushGenericNaviController.m in Sources */,
-				68F4C92A18842BF400C52B51 /* LightspeedAPIManager.m in Sources */,
 				80B24054171E4D2E0095E870 /* ViewController.m in Sources */,
 				8032BF7F18839D4700D81F89 /* LSPushSenderViewController.m in Sources */,
 				8032BFC61883A6A100D81F89 /* LSPushSendLinkPushView.m in Sources */,
