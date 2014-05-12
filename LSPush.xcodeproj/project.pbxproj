@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C08F48817B29B4E00748CB5 /* libAnMessage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C08F48717B29B4E00748CB5 /* libAnMessage.a */; };
 		801DC43C171E7FFE00910387 /* bg_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC433171E7FFE00910387 /* bg_640x1136.png */; };
 		801DC43D171E7FFE00910387 /* bg_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC434171E7FFE00910387 /* bg_640x960.png */; };
 		801DC43E171E7FFE00910387 /* bu_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DC435171E7FFE00910387 /* bu_email.png */; };
@@ -32,14 +31,11 @@
 		80B24054171E4D2E0095E870 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B24053171E4D2E0095E870 /* ViewController.m */; };
 		80B24061171E4EDA0095E870 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B24060171E4EDA0095E870 /* Security.framework */; };
 		80B670F01724E8BA00C6D57C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B670EF1724E8BA00C6D57C /* AudioToolbox.framework */; };
+		8C0B0BA61920E288003C6047 /* libLightspeed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0B0BA51920E288003C6047 /* libLightspeed.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C08F48517B29B4E00748CB5 /* AnIM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnIM.h; sourceTree = "<group>"; };
-		2C08F48617B29B4E00748CB5 /* AnPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnPush.h; sourceTree = "<group>"; };
-		2C08F48717B29B4E00748CB5 /* libAnMessage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAnMessage.a; sourceTree = "<group>"; };
 		2C5C0748171EFFA300C3B50D /* LightspeedCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightspeedCredentials.h; sourceTree = "<group>"; };
-		801DC430171E797600910387 /* LSPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LSPush.entitlements; sourceTree = "<group>"; };
 		801DC433171E7FFE00910387 /* bg_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_640x1136.png; path = LSPush/images/bg_640x1136.png; sourceTree = "<group>"; };
 		801DC434171E7FFE00910387 /* bg_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_640x960.png; path = LSPush/images/bg_640x960.png; sourceTree = "<group>"; };
 		801DC435171E7FFE00910387 /* bu_email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bu_email.png; path = LSPush/images/bu_email.png; sourceTree = "<group>"; };
@@ -69,6 +65,12 @@
 		80B24053171E4D2E0095E870 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		80B24060171E4EDA0095E870 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		80B670EF1724E8BA00C6D57C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8C0B0B8A1920D084003C6047 /* LSPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LSPush.entitlements; sourceTree = "<group>"; };
+		8C0B0BA11920E288003C6047 /* AnIM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnIM.h; sourceTree = "<group>"; };
+		8C0B0BA21920E288003C6047 /* AnPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnPush.h; sourceTree = "<group>"; };
+		8C0B0BA31920E288003C6047 /* ArrownockException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrownockException.h; sourceTree = "<group>"; };
+		8C0B0BA41920E288003C6047 /* MRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRM.h; sourceTree = "<group>"; };
+		8C0B0BA51920E288003C6047 /* libLightspeed.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLightspeed.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,31 +82,14 @@
 				80B24061171E4EDA0095E870 /* Security.framework in Frameworks */,
 				80B24038171E4D2E0095E870 /* UIKit.framework in Frameworks */,
 				80B2403A171E4D2E0095E870 /* Foundation.framework in Frameworks */,
+				8C0B0BA61920E288003C6047 /* libLightspeed.a in Frameworks */,
 				80B2403C171E4D2E0095E870 /* CoreGraphics.framework in Frameworks */,
-				2C08F48817B29B4E00748CB5 /* libAnMessage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C08F48317B29B4E00748CB5 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				2C08F48417B29B4E00748CB5 /* AnMessage */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		2C08F48417B29B4E00748CB5 /* AnMessage */ = {
-			isa = PBXGroup;
-			children = (
-				2C08F48517B29B4E00748CB5 /* AnIM.h */,
-				2C08F48617B29B4E00748CB5 /* AnPush.h */,
-			);
-			path = AnMessage;
-			sourceTree = "<group>";
-		};
 		801DC431171E7FEA00910387 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,20 +108,10 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		80AD25171720DE4600FAFD39 /* LightspeedSDK2.0 */ = {
-			isa = PBXGroup;
-			children = (
-				2C08F48317B29B4E00748CB5 /* include */,
-				2C08F48717B29B4E00748CB5 /* libAnMessage.a */,
-			);
-			path = LightspeedSDK2.0;
-			sourceTree = "<group>";
-		};
 		80B2402B171E4D2E0095E870 = {
 			isa = PBXGroup;
 			children = (
 				80B2403D171E4D2E0095E870 /* LSPush */,
-				80AD25171720DE4600FAFD39 /* LightspeedSDK2.0 */,
 				801DC431171E7FEA00910387 /* Images */,
 				80B24036171E4D2E0095E870 /* Frameworks */,
 				80B24035171E4D2E0095E870 /* Products */,
@@ -166,13 +141,14 @@
 		80B2403D171E4D2E0095E870 /* LSPush */ = {
 			isa = PBXGroup;
 			children = (
-				801DC430171E797600910387 /* LSPush.entitlements */,
+				8C0B0B8A1920D084003C6047 /* LSPush.entitlements */,
 				2C5C0748171EFFA300C3B50D /* LightspeedCredentials.h */,
 				80B24046171E4D2E0095E870 /* LSPushAppDelegate.h */,
 				80B24047171E4D2E0095E870 /* LSPushAppDelegate.m */,
 				80B2404F171E4D2E0095E870 /* MainStoryboard.storyboard */,
 				80B24052171E4D2E0095E870 /* ViewController.h */,
 				80B24053171E4D2E0095E870 /* ViewController.m */,
+				8C0B0B9E1920E288003C6047 /* LightspeedSDK2.5 */,
 				80B2403E171E4D2E0095E870 /* Supporting Files */,
 			);
 			path = LSPush;
@@ -190,6 +166,34 @@
 				80B2404D171E4D2E0095E870 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C0B0B9E1920E288003C6047 /* LightspeedSDK2.5 */ = {
+			isa = PBXGroup;
+			children = (
+				8C0B0B9F1920E288003C6047 /* include */,
+				8C0B0BA51920E288003C6047 /* libLightspeed.a */,
+			);
+			path = LightspeedSDK2.5;
+			sourceTree = "<group>";
+		};
+		8C0B0B9F1920E288003C6047 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				8C0B0BA01920E288003C6047 /* Lightspeed */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		8C0B0BA01920E288003C6047 /* Lightspeed */ = {
+			isa = PBXGroup;
+			children = (
+				8C0B0BA11920E288003C6047 /* AnIM.h */,
+				8C0B0BA21920E288003C6047 /* AnPush.h */,
+				8C0B0BA31920E288003C6047 /* ArrownockException.h */,
+				8C0B0BA41920E288003C6047 /* MRM.h */,
+			);
+			path = Lightspeed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +224,16 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Herxun;
+				TargetAttributes = {
+					80B24033171E4D2E0095E870 = {
+						DevelopmentTeam = 9DLS2VP9JV;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 80B2402F171E4D2E0095E870 /* Build configuration list for PBXProject "LSPush" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -356,21 +370,29 @@
 		80B24058171E4D2E0095E870 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = LSPush/LSPush.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bobie Chen (68S77NE7R9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bobie Chen (68S77NE7R9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LSPush/LSPush-Prefix.pch";
-				HEADER_SEARCH_PATHS = "../LightspeedSDK2.0/**";
+				HEADER_SEARCH_PATHS = "../LightspeedSDK2.5/**";
 				INFOPLIST_FILE = "LSPush/LSPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LightspeedSDK2.0\"",
+					"\"$(SRCROOT)/LightspeedSDK2.5\"",
+					"$(PROJECT_DIR)/LightspeedSDK2.5",
+					"$(PROJECT_DIR)/LSPush",
+					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25EF59A1-5186-440F-B926-D354BE30891E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25EF59A1-5186-440F-B926-D354BE30891E";
+				PROVISIONING_PROFILE = "0DBBEF34-14C9-44E3-B375-BF2C120B6E64";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0DBBEF34-14C9-44E3-B375-BF2C120B6E64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -378,21 +400,29 @@
 		80B24059171E4D2E0095E870 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = LSPush/LSPush.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bobie Chen (68S77NE7R9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bobie Chen (68S77NE7R9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LSPush/LSPush-Prefix.pch";
-				HEADER_SEARCH_PATHS = "../LightspeedSDK2.0/**";
+				HEADER_SEARCH_PATHS = "../LightspeedSDK2.5/**";
 				INFOPLIST_FILE = "LSPush/LSPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LightspeedSDK2.0\"",
+					"\"$(SRCROOT)/LightspeedSDK2.5\"",
+					"$(PROJECT_DIR)/LightspeedSDK2.5",
+					"$(PROJECT_DIR)/LSPush",
+					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25EF59A1-5186-440F-B926-D354BE30891E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25EF59A1-5186-440F-B926-D354BE30891E";
+				PROVISIONING_PROFILE = "0DBBEF34-14C9-44E3-B375-BF2C120B6E64";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0DBBEF34-14C9-44E3-B375-BF2C120B6E64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

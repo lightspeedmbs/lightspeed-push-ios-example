@@ -365,6 +365,8 @@
 
 - (void)changeViewAfterLoginSuccessfully
 {
+//    [AnPush setup:kArrownockAppKey deviceToken:nil delegate:nil secure:YES];
+    
     /* Setup channel names to register to your own Lightspeed application */
     NSArray* arrayChannels = [NSArray arrayWithObjects:@"BroadcastMessage", @"LightspeedNews", nil ];
     [self updateLoginCredentials:self.textEmail.text andPassword:self.textPassword.text];
