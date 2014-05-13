@@ -70,8 +70,7 @@ typedef enum : NSUInteger {
     MRM_INVALID_PARAMS                  = 1202,
     MRM_INVALID_ID                      = 1203,
     MRM_INVALID_DATA                    = 1204,
-    MRM_INVALID_DATATYPE                = 1205,
-    
+    MRM_INVALID_DATATYPE                = 1205
 } ArrownockExceptionErrorCode;
 
 @interface ArrownockException : NSException

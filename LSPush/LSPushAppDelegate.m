@@ -65,7 +65,7 @@
 {
     NSLog(@"Arrownock didRegistered\nError: %@", error);
     ViewController* mainViewController = (ViewController*)[[[UIApplication sharedApplication] delegate] window].rootViewController;
-    if (![error isEqualToString:@""])
+    if (![error isEqualToString:@""] && error)
     {
         BOOL success = NO;
         [mainViewController displayResult:success withMessage:error];
