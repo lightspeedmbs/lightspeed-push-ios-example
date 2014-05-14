@@ -9,6 +9,7 @@
 #ifndef LSPush_LightspeedCredentials_h
 #define LSPush_LightspeedCredentials_h
 
-static NSString* kArrownockAppKey = @"FgNlHbJOrLZhF92WCXAsBapp8GlZXEpn";    // Fill in your app key here
+//static NSString* kArrownockAppKey = @"FgNlHbJOrLZhF92WCXAsBapp8GlZXEpn"; // Test server
+static NSString* kArrownockAppKey = @"JsLJwqKSdyzEFln8aY91RQ6DUlXB7pe6";    // Fill in your app key here
 
 #endif

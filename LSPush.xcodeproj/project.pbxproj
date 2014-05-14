@@ -31,7 +31,7 @@
 		80B24054171E4D2E0095E870 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B24053171E4D2E0095E870 /* ViewController.m */; };
 		80B24061171E4EDA0095E870 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B24060171E4EDA0095E870 /* Security.framework */; };
 		80B670F01724E8BA00C6D57C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B670EF1724E8BA00C6D57C /* AudioToolbox.framework */; };
-		8C0B0BA61920E288003C6047 /* libLightspeed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0B0BA51920E288003C6047 /* libLightspeed.a */; };
+		8C87907D1921BAAD00DB4080 /* libLightspeed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C87907C1921BAAD00DB4080 /* libLightspeed.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +70,7 @@
 		8C0B0BA21920E288003C6047 /* AnPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnPush.h; sourceTree = "<group>"; };
 		8C0B0BA31920E288003C6047 /* ArrownockException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrownockException.h; sourceTree = "<group>"; };
 		8C0B0BA41920E288003C6047 /* MRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRM.h; sourceTree = "<group>"; };
-		8C0B0BA51920E288003C6047 /* libLightspeed.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLightspeed.a; sourceTree = "<group>"; };
+		8C87907C1921BAAD00DB4080 /* libLightspeed.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLightspeed.a; path = include/libLightspeed.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 				80B24061171E4EDA0095E870 /* Security.framework in Frameworks */,
 				80B24038171E4D2E0095E870 /* UIKit.framework in Frameworks */,
 				80B2403A171E4D2E0095E870 /* Foundation.framework in Frameworks */,
-				8C0B0BA61920E288003C6047 /* libLightspeed.a in Frameworks */,
+				8C87907D1921BAAD00DB4080 /* libLightspeed.a in Frameworks */,
 				80B2403C171E4D2E0095E870 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,8 +171,8 @@
 		8C0B0B9E1920E288003C6047 /* LightspeedSDK2.5 */ = {
 			isa = PBXGroup;
 			children = (
+				8C87907C1921BAAD00DB4080 /* libLightspeed.a */,
 				8C0B0B9F1920E288003C6047 /* include */,
-				8C0B0BA51920E288003C6047 /* libLightspeed.a */,
 			);
 			path = LightspeedSDK2.5;
 			sourceTree = "<group>";
@@ -387,6 +387,7 @@
 					"$(PROJECT_DIR)/LightspeedSDK2.5",
 					"$(PROJECT_DIR)/LSPush",
 					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5",
+					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5/include",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -417,6 +418,7 @@
 					"$(PROJECT_DIR)/LightspeedSDK2.5",
 					"$(PROJECT_DIR)/LSPush",
 					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5",
+					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5/include",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
