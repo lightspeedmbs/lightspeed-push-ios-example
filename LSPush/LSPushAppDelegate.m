@@ -22,6 +22,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    NSDate *lastLaunch = [[NSUserDefaults standardUserDefaults] objectForKey:@"LSPushLastLaunch"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LSPushLastLaunch"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:-1];
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDate *yesterday = [currentCalendar dateByAddingComponents:dateComponents toDate:[NSDate date]  options:0];
+    
+    if ([yesterday compare:lastLaunch] == NSOrderedDescending)
+    {
+        NSLog(@"Last opened before yesterday!!!");
+    }
+
+
+
     [AnPush registerForPushNotification:(UIRemoteNotificationTypeAlert|
                                          UIRemoteNotificationTypeBadge|
                                          UIRemoteNotificationTypeSound)];

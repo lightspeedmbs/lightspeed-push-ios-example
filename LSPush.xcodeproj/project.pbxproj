@@ -386,13 +386,13 @@
 				INFOPLIST_FILE = "LSPush/LSPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LightspeedSDK2.5\"",
-					"$(PROJECT_DIR)/LightspeedSDK2.5",
-					"$(PROJECT_DIR)/LSPush",
-					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5",
-					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5/include",
+					"$(SRCROOT)/**",
 				);
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-weak_framework",
+					Metal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
@@ -417,13 +417,13 @@
 				INFOPLIST_FILE = "LSPush/LSPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LightspeedSDK2.5\"",
-					"$(PROJECT_DIR)/LightspeedSDK2.5",
-					"$(PROJECT_DIR)/LSPush",
-					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5",
-					"$(PROJECT_DIR)/LSPush/LightspeedSDK2.5/include",
+					"$(SRCROOT)/**",
 				);
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-weak_framework",
+					Metal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
