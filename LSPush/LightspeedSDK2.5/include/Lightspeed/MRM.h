@@ -2,8 +2,7 @@
 //  MRM.h
 //  MRM
 //
-//  Created by Edward Sun on 7/2/13.
-//  Copyright (c) 2013 arrownock. All rights reserved.
+//  Copyright (c) 2014 arrownock. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

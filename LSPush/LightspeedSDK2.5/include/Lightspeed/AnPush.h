@@ -2,8 +2,7 @@
 //  AnPush.h
 //  AnPush
 //
-//  Created by Arrownock on 1/19/13.
-//  Copyright (c) 2013 Arrownock. All rights reserved.
+//  Copyright (c) 2014 Arrownock. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
