@@ -21,7 +21,7 @@
 - (void)anIM:(AnIM *)anIM didReceiveBinary:(NSData *)data fileType:(NSString *)fileType customData:(NSDictionary *)customData from:(NSString *)from parties:(NSSet *)parties messageId:(NSString *)messageId at:(NSNumber *)timestamp;
 - (void)anIM:(AnIM *)anIM didReceiveMessage:(NSString *)message customData:(NSDictionary *)customData from:(NSString *)from topicId:(NSString *)topicId messageId:(NSString *)messageId at:(NSNumber *)timestamp;
 - (void)anIM:(AnIM *)anIM didReceiveBinary:(NSData *)data fileType:(NSString *)fileType customData:(NSDictionary *)customData from:(NSString *)from topicId:(NSString *)topicId messageId:(NSString *)messageId at:(NSNumber *)timestamp;
-- (void)anIM:(AnIM *)anIM didReceiveNotice:(NSString *)notice customData:(NSDictionary *)customData from:(NSString *)from messageId:(NSString *)messageId at:(NSNumber *)timestamp;
+- (void)anIM:(AnIM *)anIM didReceiveNotice:(NSString *)notice customData:(NSDictionary *)customData from:(NSString *)from topicId:(NSString *)topicId messageId:(NSString *)messageId at:(NSNumber *)timestamp;
 
 //------------------------------------------
 // return the error with ArrownockException
@@ -89,6 +89,8 @@ typedef enum {
 
 - (void)getFullTopicHistory:(NSString *)topicId limit:(int)limit timestamp:(NSNumber *)timestamp success:(void (^)(NSArray *messages))success failure:(void (^)(ArrownockException *exception))failure;
 
+- (void)getFullTopicHistory:(NSString *)topicId clientId:(NSString *)clientId limit:(int)limit timestamp:(NSNumber *)timestamp success:(void (^)(NSArray *messages))success failure:(void (^)(ArrownockException *exception))failure;
+
 - (void)getHistory:(NSSet *)clientIds clientId:(NSString *)clientId limit:(int)limit timestamp:(NSNumber *)timestamp success:(void (^)(NSArray *messages))success failure:(void (^)(ArrownockException *exception))failure;
 
 - (void)getOfflineTopicHistory:(NSString *)clientId limit:(int)limit success:(void (^)(NSArray *messages, int count))success failure:(void (^)(ArrownockException *exception))failure;
@@ -107,4 +109,10 @@ typedef enum {
 
 - (void)getClientsStatus:(NSSet *)clientIds;
 - (void)getSessionInfo:(NSString *)sessionId;
+
+- (void)setPushNotificationForChatSession:(NSString *)clientId isEnable:(BOOL)isEnable success:(void (^)())success failure:(void (^)(ArrownockException *exception))failure;
+- (void)setPushNotificationForTopic:(NSString *)clientId isEnable:(BOOL)isEnable success:(void (^)())success failure:(void (^)(ArrownockException *exception))failure;
+- (void)setPushNotificationForNotice:(NSString *)clientId isEnable:(BOOL)isEnable success:(void (^)())success failure:(void (^)(ArrownockException *exception))failure;
+- (void)enablePushNotificationForTopics:(NSString *)clientId topicIds:(NSSet *)topicIds success:(void (^)())success failure:(void (^)(ArrownockException *exception))failure;
+- (void)disablePushNotificationForTopics:(NSString *)clientId topicIds:(NSSet *)topicIds success:(void (^)())success failure:(void (^)(ArrownockException *exception))failure;
 @end

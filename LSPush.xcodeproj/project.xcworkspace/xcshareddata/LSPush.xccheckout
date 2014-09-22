@@ -10,22 +10,26 @@
 	<string>LSPush</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>031299087340505B3D9DCF3D15A1DE5D55062AB0</key>
+		<string>https://github.com/lightspeedmbs/lightspeed-push-ios-example.git</string>
 		<key>C2EB6795-AA38-4D40-8DE0-F395B694A8F2</key>
 		<string>https://github.com/herxun/lightspeed-ios-demo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>LSPush.xcodeproj/project.xcworkspace</string>
+	<string>LSPush.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C2EB6795-AA38-4D40-8DE0-F395B694A8F2</key>
+		<key>031299087340505B3D9DCF3D15A1DE5D55062AB0</key>
 		<string>../..</string>
+		<key>C2EB6795-AA38-4D40-8DE0-F395B694A8F2</key>
+		<string>../../../lightspeed-ios-demo</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/herxun/lightspeed-ios-demo.git</string>
+	<string>https://github.com/lightspeedmbs/lightspeed-push-ios-example.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C2EB6795-AA38-4D40-8DE0-F395B694A8F2</string>
+	<string>031299087340505B3D9DCF3D15A1DE5D55062AB0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>C2EB6795-AA38-4D40-8DE0-F395B694A8F2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>lightspeed-ios-demo</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>031299087340505B3D9DCF3D15A1DE5D55062AB0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>lightspeed-push-ios-example</string>
 		</dict>
 	</array>
 </dict>
