@@ -32,16 +32,12 @@
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
     NSDate *yesterday = [currentCalendar dateByAddingComponents:dateComponents toDate:[NSDate date]  options:0];
     
-    if ([yesterday compare:lastLaunch] == NSOrderedDescending)
+    if ([yesterday compare:lastLaunch] == NSOrderedDescending || lastLaunch == nil)
     {
-        NSLog(@"Last opened before yesterday!!!");
+        [AnPush registerForPushNotification:(UIRemoteNotificationTypeAlert|
+                                             UIRemoteNotificationTypeBadge|
+                                             UIRemoteNotificationTypeSound)];
     }
-
-
-
-    [AnPush registerForPushNotification:(UIRemoteNotificationTypeAlert|
-                                         UIRemoteNotificationTypeBadge|
-                                         UIRemoteNotificationTypeSound)];
     
     return YES;
 }
