@@ -38,6 +38,12 @@
                                              UIRemoteNotificationTypeBadge|
                                              UIRemoteNotificationTypeSound)];
     }
+    else
+    {
+        NSData *tokenData = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+        if (tokenData)
+            [AnPush setup:kArrownockAppKey deviceToken:tokenData delegate:self secure:YES];
+    }
     
     return YES;
 }
@@ -45,6 +51,7 @@
 #pragma mark - Lightspeed push-notification registration result handler
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:@"deviceToken"];
     [AnPush setup:kArrownockAppKey deviceToken:deviceToken delegate:self secure:YES];
 }
 
