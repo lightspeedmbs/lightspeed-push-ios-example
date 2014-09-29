@@ -58,6 +58,7 @@ typedef enum : NSUInteger {
     IM_FAILED_GET_SESSION_INFO          = 2113,
 	IM_FAILED_GET_TOPIC_LIST            = 2114,
     IM_FAILED_UPDATE_TOPIC              = 2115,
+    IM_FAILED_REMOVE_TOPIC              = 2116,
 
     IM_SERVICE_UNAVAILABLE              = 3101,
 	IM_FAILED_CONNECT                   = 3102,

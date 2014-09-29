@@ -148,7 +148,7 @@
 				80B2404F171E4D2E0095E870 /* MainStoryboard.storyboard */,
 				80B24052171E4D2E0095E870 /* ViewController.h */,
 				80B24053171E4D2E0095E870 /* ViewController.m */,
-				8C0B0B9E1920E288003C6047 /* LightspeedSDK2.16 */,
+				8C0B0B9E1920E288003C6047 /* LightspeedSDK2.17 */,
 				80B2403E171E4D2E0095E870 /* Supporting Files */,
 			);
 			path = LSPush;
@@ -168,13 +168,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8C0B0B9E1920E288003C6047 /* LightspeedSDK2.16 */ = {
+		8C0B0B9E1920E288003C6047 /* LightspeedSDK2.17 */ = {
 			isa = PBXGroup;
 			children = (
 				8CC12DCB19CFE7400006F083 /* libLightspeed.a */,
 				8C0B0B9F1920E288003C6047 /* include */,
 			);
-			name = LightspeedSDK2.16;
+			name = LightspeedSDK2.17;
 			path = LightspeedSDK2.5;
 			sourceTree = "<group>";
 		};
@@ -378,8 +378,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = LSPush/LSPush.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LSPush/LSPush-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../LightspeedSDK2.5/**";
@@ -394,8 +394,8 @@
 					Metal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
+				PROVISIONING_PROFILE = "da66ecd7-68bd-48d0-9b37-cbc03909cd07";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "da66ecd7-68bd-48d0-9b37-cbc03909cd07";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -409,8 +409,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = LSPush/LSPush.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Liu (XMPJ4AVB79)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LSPush/LSPush-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../LightspeedSDK2.5/**";
@@ -425,7 +425,7 @@
 					Metal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "11ab1768-bc2e-4c75-b544-69a87f24cfaa";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
