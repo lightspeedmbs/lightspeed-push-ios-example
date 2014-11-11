@@ -31,6 +31,7 @@
 - (void)anIM:(AnIM *)anIM didUpdateTopicWithException:(ArrownockException *)exception;
 - (void)anIM:(AnIM *)anIM didAddClientsWithException:(ArrownockException *)exception;
 - (void)anIM:(AnIM *)anIM didRemoveClientsWithException:(ArrownockException *)exception;
+- (void)anIM:(AnIM *)anIM didRemoveTopic:(NSString *)topicId exception:(ArrownockException *)exception;
 - (void)anIM:(AnIM *)anIM didGetTopicInfo:(NSString *)topicId name:(NSString *)topicName parties:(NSSet *)parties createdDate:(NSDate *)createdDate exception:(ArrownockException *)exception;
 - (void)anIM:(AnIM *)anIM didGetTopicLog:(NSArray *)logs exception:(ArrownockException *)exception __attribute__((deprecated));
 - (void)anIM:(AnIM *)anIM didGetTopicList:(NSArray *)topics exception:(ArrownockException *)exception;
@@ -82,6 +83,7 @@ typedef enum {
 - (void)updateTopic:(NSString *)topicId withName:(NSString *)topicName withOwner:(NSString *)owner;
 - (void)addClients:(NSSet *)clientIds toTopicId:(NSString *)topicId;
 - (void)removeClients:(NSSet *)clientIds fromTopicId:(NSString *)topicId;
+- (void)removeTopic:(NSString *)topicId;
 - (void)getTopicInfo:(NSString *)topicId;
 - (void)getTopicLog:(NSString *)topicId start:(NSDate *)start end:(NSDate *)end __attribute__((deprecated));
 
