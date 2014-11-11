@@ -9,7 +9,8 @@
 #ifndef LSPush_LightspeedCredentials_h
 #define LSPush_LightspeedCredentials_h
 
-//static NSString* kArrownockAppKey = @"FgNlHbJOrLZhF92WCXAsBapp8GlZXEpn"; // Test server
-static NSString* kArrownockAppKey = @"9eonD3530cVJ0bwecPaCbl9AUmI2YxDZ";    // Fill in your app key here
+static NSString* kArrownockAppKey = @"YOUR_APP_KEY";    // Fill in your app key here
+#define LIGHTSPEED_API_BASEURL @"http://api.lightspeedmbs.com/v1" // If you are using arrownock.com, change this constant to @"http://api.arrownock.com/v1"
+                                                                  // And make sure you are using libArrownock.a instead of libLightspeed.a
 
 #endif

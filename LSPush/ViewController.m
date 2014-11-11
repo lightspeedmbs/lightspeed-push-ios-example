@@ -29,7 +29,6 @@
 #define LOGINVIEW_BUTTON_WIDTH              105.f
 #define LOGINVIEW_BUTTON_HEIGHT             44.f
 
-#define LIGHTSPEED_API_BASEURL              @"http://api.lightspeedmbs.com/v1"
 #define LIGHTSPEED_API_HTTP_METHOD          @"POST"
 #define LIGHTSPEED_API_LOGIN                @"admins/login.json"
 #define LIGHTSPEED_API_SEND_PUSH            @"push_notification/send.json"
